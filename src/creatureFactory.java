@@ -1,3 +1,4 @@
+package src;
 public class creatureFactory {
 	
    //use getCreature method to get object of type creature 
@@ -6,13 +7,13 @@ public class creatureFactory {
          return null;
       }		
       if(creatureType.equalsIgnoreCase("creature1")){
-         return new Circle();
+         return new creature1();
          
       } else if(creatureType.equalsIgnoreCase("RECTANGLE")){
-         return new Rectangle();
+         //return new Rectangle();
          
       } else if(creatureType.equalsIgnoreCase("SQUARE")){
-         return new Square();
+        //return new Square();
       }
       
       return null;
