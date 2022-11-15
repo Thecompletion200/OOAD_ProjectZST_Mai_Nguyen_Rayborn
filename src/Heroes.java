@@ -11,8 +11,10 @@ public class Heroes{
     public int magicDmg = 10;
     public int critDmg = 10;
 
+    public String currLocation;
+
     public void move(String mapToMove){
-        //do something
+        currLocation = mapToMove;
     }
     public void purchase(Integer cost){
         gold = gold - cost;
