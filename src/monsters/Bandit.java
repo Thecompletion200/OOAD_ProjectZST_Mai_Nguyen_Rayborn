@@ -1,8 +1,9 @@
 package src.monsters;
 
-import src.creatureInterface;
+import src.Monster;
 
-public class Bandit implements creatureInterface {
+// This is a monster interface
+public class Bandit implements Monster {
    
    public Integer damage = 10;
    public String creatureName = "Bandit";

@@ -1,14 +1,14 @@
 package src.monsters;
 
-import src.creatureInterface;
+import src.Monster;
 
-public class Skeleton implements creatureInterface {
+public class Skeleton implements Monster {
    
    public Integer damage = 10;
    public String creatureName = "Skeleton";
    public Integer exp = 5;
    public Integer healthPoints = 25;
-   public String monsterType = "Melee";
+   public String monsterType = "Range";
 
 
    @Override

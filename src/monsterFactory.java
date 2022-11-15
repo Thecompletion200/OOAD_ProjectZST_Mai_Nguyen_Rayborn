@@ -11,10 +11,10 @@ import src.monsters.Witch;
 import src.monsters.Wolf;
 import src.monsters.Zombie;
 
-public class creatureFactory {
+public class monsterFactory {
 	
    //use getCreature method to get object of type creature 
-   public creatureInterface getCreature(String creatureType){
+   public Monster getCreature(String creatureType){
       if(creatureType == null){
          return null;
       }		

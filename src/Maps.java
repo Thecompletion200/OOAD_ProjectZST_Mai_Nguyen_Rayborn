@@ -1,7 +1,9 @@
 package src;
 
 public class Maps {
-    
+
+    public boolean hasHero;
+    public Monster currMonster;
 }
 
 class Elden extends Maps {
