@@ -32,7 +32,7 @@ public class Monster {
         System.out.println(monsterName + "has fallen!");
     }
     public void encounter(){
-    System.out.println("You've encountered a " + monsterName)
+    System.out.println("You've encountered a " + monsterName);
     }
 }
 

@@ -9,8 +9,9 @@ public class Maps {
 
 // Town
 class Elden extends Maps {
-    public healHero(Hero currHero){
-        currHero.
+
+    public void healHero(Heroes currHero){
+        currHero.healHero();
     }
 }
 
