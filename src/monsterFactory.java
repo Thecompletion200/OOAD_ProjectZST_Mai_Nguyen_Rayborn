@@ -12,43 +12,32 @@ import src.monsters.Wolf;
 import src.monsters.Zombie;
 
 public class monsterFactory {
-	
-   //use getCreature method to get object of type creature 
-   public Monster getCreature(String creatureType){
-      if(creatureType == null){
-         return null;
-      }		
-      if(creatureType.equalsIgnoreCase("BANDIT")){
-         return new Bandit();
-      }
-      else if(creatureType.equalsIgnoreCase("WOLF")){
-         return new Wolf();
-      }
-      else if(creatureType.equalsIgnoreCase("DISEASEDCOW")){
-         return new DiseasedCow();
-      }
-      else if(creatureType.equalsIgnoreCase("DRAGON")){
-         return new Dragon();
-      }
-      else if(creatureType.equalsIgnoreCase("GIANT")){
-         return new Giant();
-      }
-      else if(creatureType.equalsIgnoreCase("SKELETON")){
-         return new Skeleton();
-      }
-      else if(creatureType.equalsIgnoreCase("TROLL")){
-         return new Troll();
-      }
-      else if(creatureType.equalsIgnoreCase("VAMPIRE")){
-         return new Vampire();
-      }
-      else if(creatureType.equalsIgnoreCase("WITCH")){
-         return new Witch();
-      }
-      else if(creatureType.equalsIgnoreCase("ZOMBIE")){
-         return new Zombie();
-      }
-
-      return null;
+	 
+   public Monster spawnBandit(){
+      return new Bandit();
+   }
+   public Monster spawnDiseasedCow(){
+      return new DiseasedCow();
+   }
+   public Monster spawnDragon(){
+      return new Dragon();
+   }
+   public Monster spawnGiant(){
+      return new Giant();
+   }
+   public Monster spawnSkeleton(){
+      return new Skeleton();
+   }
+   public Monster spawnTroll(){
+      return new Troll();
+   }
+   public Monster spawnVampire(){
+      return new Vampire();
+   }
+   public Monster spawnWitch(){
+      return new Witch();
+   }
+   public Monster spawnZombie(){
+      return new Zombie();
    }
 }

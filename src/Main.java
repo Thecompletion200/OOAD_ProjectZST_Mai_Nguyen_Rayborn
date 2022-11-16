@@ -3,9 +3,10 @@ package src;
 public class Main {
     public static void main(String[] args) {
         
-        creatureFactory creatureFac = new creatureFactory();
+        monsterFactory creatureFac = new monsterFactory();
     
-        creatureInterface creatureTest = creatureFac.getCreature("bandit");
-        creatureTest.callout();
+        Monster creatureTest = creatureFac.spawnBandit();
+        creatureTest.getMonsterName();
+
     }
 }

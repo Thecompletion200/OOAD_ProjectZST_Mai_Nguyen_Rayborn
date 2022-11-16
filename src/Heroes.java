@@ -1,21 +1,24 @@
 package src;
 
+import src.Maps;
+
 public class Heroes{
-    public int healthPoint = 150;
-    public int experiencePoint = 0;
-    public int level = 1;
-    public int gold = 50;
+    private int maxHealth = 150;
+    private int healthPoints = 150;
+    private int experiencePoints = 0;
+    private int level = 1;
+    private int gold = 50;
 
-    public int meleeDmg = 10;
-    public int rangedDmg = 10;
-    public int magicDmg = 10;
-    public int critDmg = 10;
-    public String heroType = "Melee";
+    private int meleeDmg = 10;
+    private int rangedDmg = 10;
+    private int magicDmg = 10;
+    private int critDmg = 10;
+    private String heroType = "Melee";
 
-    public String currLocation;
+    private Maps currLocation;
 
 
-    public void move(String mapToMove){
+    public void move(Maps mapToMove){
         currLocation = mapToMove;
     }
     public void purchase(Integer cost){
@@ -33,13 +36,24 @@ public class Heroes{
     public int attack(){
         return meleeDmg;
     }
+    public void healHero(){
+        this.healthPoints = this.maxHealth;
+    }
     public String getHeroType(){
         return heroType;
     }
     public void levelUp(){
-        if(experiencePoint == (level * 10)){
-            meleeDmg = meleeDmg + 10;
+        if(experiencePoints == (level * 10)){
+            this.meleeDmg += 10;
+            this.healthPoints = this.maxHealth;
+            this.gold += 100;
         }
+    }
+    public Maps getLocation(){
+        return currLocation;
+    }
+    public Integer getExp(){
+        return experiencePoints;
     }
 }
 
@@ -50,7 +64,7 @@ class Knight extends Heroes{
 class Archer extends Heroes{
 
     int healthPoint = 100;
-    public String heroType = "Range";
+    private String heroType = "Range";
     
     @Override
     public void levelUp(){
@@ -69,7 +83,7 @@ class Archer extends Heroes{
 class Rogue extends Heroes{
 
     int healthPoint = 120;
-    // public String heroType = "Melee";
+    // private String heroType = "Melee";
 
     @Override
     public void levelUp(){
@@ -84,7 +98,7 @@ class Rogue extends Heroes{
 class Mage extends Heroes{
 
     int healthPoint = 80;
-    public String heroType = "Magic";
+    private String heroType = "Magic";
 
     @Override
     public void levelUp(){
@@ -102,7 +116,7 @@ class Mage extends Heroes{
 class Priest extends Heroes{
 
     int healthPoint = 80;
-    public String heroType = "Magic";
+    private String heroType = "Magic";
 
     @Override
     public void levelUp(){
