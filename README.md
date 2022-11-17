@@ -16,3 +16,12 @@ Level 5: Sativatoff (Swordsman Oog)
 
 High Level Overview: We’re trying to implement all of the patterns and concepts that we’ve learned so far in this class. For example: Singleton, Strategy, Inheritance, Encapsulation, etc… 
 We are building a text-based adventure game (RPG) that will save a user’s state and store their game-related data in a text file so that they can pick up and play the game whenever they please.
+
+User Database
+
+    UserSaves
+        1st line) Hero Type
+        2nd line) Admin
+        3rd line) Weapon
+        4th line) Armor
+        5th line) Inventory
