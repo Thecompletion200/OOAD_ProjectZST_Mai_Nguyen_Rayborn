@@ -240,6 +240,7 @@ class VenusMantrap extends Monster {
 }
 
 class OldDrunkMan extends Monster {
+    
     public OldDrunkMan() {
         this.setMonsterName("Old Drunk Man");
         this.setDmg(10);

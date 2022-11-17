@@ -5,12 +5,11 @@ public class MeleeCombat implements FightStrategy{
 
     Scanner sc = new Scanner(System.in);
     String userChoice = "";
-    Boolean run = false;
 
     @Override
     public void fight(Heroes hero, Monster monster){
 
-        while(monster.getHealthPoints() > 0 || run){
+        while((monster.getHealthPoints() > 0)){
             System.out.println("Make your move...\n1. Attack\n2. Run");
             userChoice = sc.nextLine();
             if(userChoice.equals("1")){
@@ -23,7 +22,7 @@ public class MeleeCombat implements FightStrategy{
             }
             else if(userChoice.equals("2"))
             {
-                run = true;
+                return;
             }
             System.out.println("You have " + hero.getHealthPoints() + " HP");
             System.out.println("The " + monster.getMonsterName() + " has " + monster.getHealthPoints() + " HP");

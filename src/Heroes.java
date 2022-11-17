@@ -11,12 +11,14 @@ public class Heroes{
     private int experiencePoints = 0;
     private int level = 1;
     private int gold = 50;
+    private String heroType;
+    private String heroName;
 
     public int meleeDmg = 10;
     public int rangedDmg = 10;
     public int magicDmg = 10;
     public int critMult = 1;
-    public String heroType = "Melee";
+    public String damageType = "Melee";
     public Items weapon;
     public Items armor;
 
@@ -61,6 +63,9 @@ public class Heroes{
     }
     public String getHeroType(){
         return heroType;
+    }
+    public String getDamgeType(){
+        return damageType;
     }
     // public void levelUp(){
     //     if(experiencePoints == (level * 10)){
