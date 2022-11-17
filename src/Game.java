@@ -61,7 +61,7 @@ public class Game {
         }
         else{
             advHero = command.loadData(userChoice, advHero);
-            //System.out.println(advHero.getHeroType());
+            // System.out.println(advHero.getHeroType());
         }
         //sc.close();
 
