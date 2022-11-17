@@ -32,7 +32,7 @@ public class Game {
         String userChoice;
         boolean access = false;
         Monster currMonster;
-        Heroes advHero;
+        Heroes advHero = null;
 
 
         // // TESTING
@@ -55,8 +55,13 @@ public class Game {
         System.out.println("Password:");
         userChoice = userChoice + sc.nextLine();
         access = command.login(userChoice);
+
         if(!access){
             System.out.println("Oops! Looks like that account information wasn't correct or that user does not exist!");
+        }
+        else{
+            advHero = command.loadData(userChoice, advHero);
+            //System.out.println(advHero.getHeroType());
         }
         //sc.close();
 

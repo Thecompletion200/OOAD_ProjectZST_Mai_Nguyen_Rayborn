@@ -42,7 +42,32 @@ public class Command {
         }
     }
 
-    public void initializeGame(){
+    public Heroes loadData(String userInput, Heroes advHero)throws FileNotFoundException, IOException{
 
+        try (BufferedReader br = new BufferedReader(new FileReader("src/userData/" + userInput + ".txt"))) {
+            String line;
+            int count = 0;
+            while ((line = br.readLine()) != null) {
+                count+=1;
+                // process the line. If we find that the user has a valid user/pass, grant access
+                if(line.equals("Knight")){
+                    Heroes returnKnight = new Knight();
+                    advHero = returnKnight;
+                }
+                else if(line.equals("Archer")){
+
+                }
+                else if(line.equals("Rouge")){
+
+                }
+                else if(line.equals("Mage")){
+
+                }
+                else if(line.equals("Priest")){
+
+                }
+            }
+            return advHero;
+        }
     }
 }

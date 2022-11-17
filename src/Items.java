@@ -33,6 +33,13 @@ class Sword extends Items{
     public int armorRating = 0;
 }
 
+class HELLBRINGER extends Items{
+
+    public int weaponDamage = 1000000000;
+    public int armorRating = 1000000000;
+}
+
+
 class Armor extends Items{
     
     public int weaponDamage = 0;

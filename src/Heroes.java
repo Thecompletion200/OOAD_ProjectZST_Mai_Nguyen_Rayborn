@@ -11,7 +11,7 @@ public class Heroes{
     private int experiencePoints = 0;
     private int level = 1;
     private int gold = 50;
-    private String heroType;
+    private String heroType = "Knight";
     private String heroName;
 
     public int meleeDmg = 10;
