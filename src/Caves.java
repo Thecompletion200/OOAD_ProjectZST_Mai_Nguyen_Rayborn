@@ -1,8 +1,6 @@
 package src;
 
 public class Caves {
-
-
     public void mine(){
         // do something
     }
@@ -12,7 +10,6 @@ public class Caves {
 }
 
 class RaveCave extends Caves {
-
     @Override
     public void mine(){
         //do something
@@ -20,10 +17,8 @@ class RaveCave extends Caves {
 }
 
 class DinosaurPalm extends Caves {
-
     @Override
     public void mine(){
         //do something
     }
-
 }

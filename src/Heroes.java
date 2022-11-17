@@ -1,8 +1,11 @@
 package src;
 
+import javax.swing.plaf.metal.MetalLabelUI;
+
 import src.Maps;
 
 public class Heroes{
+
     private int maxHealth = 150;
     private int healthPoints = 150;
     private int experiencePoints = 0;
@@ -12,11 +15,12 @@ public class Heroes{
     public int meleeDmg = 10;
     public int rangedDmg = 10;
     public int magicDmg = 10;
-    public int critDmg = 10;
-    private String heroType = "Melee";
+    public int critMult = 1;
+    public String heroType = "Melee";
+    public Items weapon;
+    public Items armor;
 
     private Maps currLocation;
-
 
     public void move(Maps mapToMove){
         currLocation = mapToMove;
@@ -34,56 +38,102 @@ public class Heroes{
         //do something
     }
     public int attack(){
-        return meleeDmg;
+        if(weapon.weaponType.equals("Melee")){
+            return meleeDmg + weapon.getDamage();
+        }
+        else if(weapon.weaponType.equals("Range")){
+            return rangedDmg + weapon.getDamage();
+
+        } 
+        else if(weapon.weaponType.equals("Magic")){
+            return magicDmg + weapon.getDamage();
+        }
+        // no weapon
+        else{
+            return meleeDmg;
+        }
     }
     public void healHero(){
         this.healthPoints = this.maxHealth;
     }
+    public void damageHero(int monsterDamage){
+        this.healthPoints-= monsterDamage; 
+    }
     public String getHeroType(){
         return heroType;
     }
-    public void levelUp(){
-        if(experiencePoints == (level * 10)){
-            this.meleeDmg += 10;
-            this.healthPoints = this.maxHealth;
-            this.gold += 100;
-        }
-    }
+    // public void levelUp(){
+    //     if(experiencePoints == (level * 10)){
+    //         this.meleeDmg += 10;
+    //         this.healthPoints = this.maxHealth;
+    //         this.gold += 100;
+    //     }
+    // }
     public Maps getLocation(){
         return currLocation;
     }
     public Integer getExp(){
         return experiencePoints;
     }
+    public Integer getHealthPoints(){
+        return this.healthPoints;
+    }
+
+    public void equipWeapon(Items weapon){
+        this.weapon = weapon;
+    }
 }
 
 class Knight extends Heroes{
-    
+    int healthPoint = 130;
 }
 
 class Archer extends Heroes{
-
     int healthPoint = 100;
     private String heroType = "Range";
-    
+    // @Override
+    // public void levelUp(){
+    //     if(experiencePoints == (level * 10)){
+    //         this.rangedDmg += 10;
+    //         this.healthPoints = this.maxHealth;
+    //         this.gold += 100;
+    //     }
+    // }
 }
 
 class Rogue extends Heroes{
 
     int healthPoint = 120;
-    // private String heroType = "Melee";
-    
+    private String heroType = "Melee";
+    // public void levelUp(){
+    //     if(experiencePoints == (level * 10)){
+    //         this.meleeDmg += 10;
+    //         this.healthPoints = this.maxHealth;
+    //         this.gold += 100;
+    //     }
+    // }
 }
 
 class Mage extends Heroes{
-
     int healthPoint = 80;
     private String heroType = "Magic";
-
+    // public void levelUp(){
+    //     if(experiencePoints == (level * 10)){
+    //         this.magicDmg += 10;
+    //         this.healthPoints = this.maxHealth;
+    //         this.gold += 100;
+    //     }
+    // }
 }
 
 class Priest extends Heroes{
-
     int healthPoint = 80;
     private String heroType = "Magic";
+    // public void levelUp(){
+    //     if(experiencePoints == (level * 10)){
+    //         this.magicDmg += 10;
+    //         this.healthPoints = this.maxHealth;
+    //         this.gold += 100;
+    //     }
+    // }
 }

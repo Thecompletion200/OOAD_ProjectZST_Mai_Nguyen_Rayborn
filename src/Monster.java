@@ -27,7 +27,26 @@ public class Monster {
     public void damageMonster(Integer damageTaken){
       this.healthPoints = this.healthPoints - damageTaken;
     }
-
+    public void setMonsterName(String newName)
+    {
+        this.monsterName = newName;
+    }
+    public void setDmg(int dmg)
+    {
+        this.damage = dmg;
+    }
+    public void setExp(int experience)
+    {
+        this.exp = experience;
+    }
+    public void setHealthPoint(int hp)
+    {
+        this.healthPoints = hp;
+    }
+    public void setMonsterType(String type)
+    {
+        this.monsterType = type;
+    }
     public void die() {
         System.out.println(monsterName + "has fallen!");
     }
@@ -38,176 +57,228 @@ public class Monster {
 
 // Level 1 Monsters
 class Bandit extends Monster {
-    private Integer damage = 5;
-    private String monsterName = "Bandit";
-    private Integer exp = 5;
-    private Integer healthPoints = 30;
-    private String monsterType = "Range";
+    
+    public Bandit() {
+        this.setMonsterName("Bandit");
+        this.setDmg(5);
+        this.setExp(5);
+        this.setHealthPoint(12);
+        this.setMonsterType("Melee");
+    }
 }
 
 class DiseasedCow extends Monster {
-    private Integer damage = 5;
-    private String monsterName = "Diseased Cow";
-    private Integer exp = 2;
-    private Integer healthPoints = 15;
-    private String monsterType = "Melee";
+    
+    public DiseasedCow() {
+        this.setMonsterName("Diseased Cow");
+        this.setDmg(5);
+        this.setExp(5);
+        this.setHealthPoint(12);
+        this.setMonsterType("Melee");
+    }
 }
 
 class Snake extends Monster {
-    private Integer damage = 5;
-    private String monsterName = "Snake";
-    private Integer exp = 2;
-    private Integer healthPoints = 15;
-    private String monsterType = "Melee";
+    
+    public Snake() {
+        this.setMonsterName("Snake");
+        this.setDmg(5);
+        this.setExp(5);
+        this.setHealthPoint(12);
+        this.setMonsterType("Range");
+    };
 }
 
-class Apprentice extends Monster {
-    private Integer damage = 5;
-    private String monsterName = "Apprentice";
-    private Integer exp = 2;
-    private Integer healthPoints = 15;
-    private String monsterType = "Magic";
+class EvilApprentice extends Monster {
+
+    public EvilApprentice() {
+        this.setMonsterName("Evil Apprentice");
+        this.setDmg(5);
+        this.setExp(5);
+        this.setHealthPoint(12);
+        this.setMonsterType("Magic");
+    }
 }
 
 // Level 1 Boss
 class BanditKing extends Monster {
-    private Integer damage = 12;
-    private String monsterName = "Bandit King";
-    private Integer exp = 15;
-    private Integer healthPoints = 40;
-    private String monsterType = "Range";
+
+    public BanditKing() {
+        this.setMonsterName("Bandit King");
+        this.setDmg(12);
+        this.setExp(15);
+        this.setHealthPoint(40);
+        this.setMonsterType("Range");
+    }
 }
 
 // Level 2 Monsters
 class SkeletonArcher extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Skeleton Archer";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Range";
+
+    public SkeletonArcher() {
+        this.setMonsterName("Skeleton Archer");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Range");
+    }
 }
 
 class Troll extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Troll";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Melee";
+
+    public Troll() {
+        this.setMonsterName("Troll");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Melee");
+    }
 }
 
 class Zombie extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Zombie";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Melee";
+
+    public Zombie() {
+        this.setMonsterName("Zombie");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Melee");
+    }
 }
 
 class Vampire extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Vampire";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Magic";
+    public Vampire() {
+        this.setMonsterName("Vampire");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Magic");
+    }
 }
 // Second Boss
 class Dracula extends Monster {
-    private Integer damage = 15;
-    private String monsterName = "Dracula";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Magic";
+    public Dracula() {
+        this.setMonsterName("Dracula");
+        this.setDmg(15);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Magic");
+    }
 }
 
 // Level 3 Monsters
 class InfernalDragon extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Infernal Dragon";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Magic";
+    public InfernalDragon() {
+        this.setMonsterName("Infernal Dragon");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Magic");
+    }
 }
 
 class Giant extends Monster {
-    private Integer damage = 100;
-    private String monsterName = "Giant";
-    private Integer exp = 5;
-    private Integer healthPoints = 250;
-    private String monsterType = "Melee";
+    public Giant() {
+        this.setMonsterName("Giant");
+        this.setDmg(100);
+        this.setExp(5);
+        this.setHealthPoint(250);
+        this.setMonsterType("Melee");
+    }
 }
 
 class Witch extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Witch";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Magic";
+    public Witch() {
+        this.setMonsterName("Witch");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Magic");
+    }
 }
 
 class MolotovMan extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Molotov Man";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Range";
+    public MolotovMan() {
+        this.setMonsterName("MolotovMan");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Range");
+    }
 }
 
 // Third Boss
 class Rardinos extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Rardinos, Lord of Fire";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Magic";
+    public Rardinos() {
+        this.setMonsterName("Rardinos, Lord of Fire");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Magic");
+    }
 }
 
 // Level 4 Monsters
 class Parasite extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Parasite";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Melee";
+    public Parasite() {
+        this.setMonsterName("Parasite");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Melee");
+    }
 }
 
 class VenusMantrap extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Venus Mantrap";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Magic";
+    public VenusMantrap() {
+        this.setMonsterName("Venus Mantrap");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Magic");
+    }
 }
 
 class OldDrunkMan extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Old Drunk Man";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Magic";
+    public OldDrunkMan() {
+        this.setMonsterName("Old Drunk Man");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Magic");
+    }
 }
 
 class Regi extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Regi";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Melee";
+    public Regi() {
+        this.setMonsterName("Regi");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Range");
+    }
 }
 
 // Fourth Boss
 class Nokira extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Nokira";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Magic";
+
+    public Nokira() {
+        this.setMonsterName("Nokira");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Range");
+    }
 }
 
 // Final Boss
 class SwordsmanOog extends Monster {
-    private Integer damage = 10;
-    private String monsterName = "Swordman Oog";
-    private Integer exp = 5;
-    private Integer healthPoints = 25;
-    private String monsterType = "Melee";
+
+    public SwordsmanOog() {
+        this.setMonsterName("Swordsman Oog");
+        this.setDmg(10);
+        this.setExp(5);
+        this.setHealthPoint(25);
+        this.setMonsterType("Melee");
+    }
 }
