@@ -49,25 +49,25 @@ public class Game {
         // melee.fight(testHero, testMonster);
         // testMonster.getMonsterName();
 
-        // // Login
-        // System.out.println("Please Login To Continue\nUsername:");
-        // userChoice = sc.nextLine();
-        // System.out.println("Password:");
-        // userChoice = userChoice + sc.nextLine();
-        // access = command.login(userChoice);
-        // if(!access){
-        //     System.out.println("Oops! Looks like that account information wasn't correct or that user does not exist!");
-        // }
-        // //sc.close();
+        // Login
+        System.out.println("Please Login To Continue\nUsername:");
+        userChoice = sc.nextLine();
+        System.out.println("Password:");
+        userChoice = userChoice + sc.nextLine();
+        access = command.login(userChoice);
+        if(!access){
+            System.out.println("Oops! Looks like that account information wasn't correct or that user does not exist!");
+        }
+        //sc.close();
 
 
-        // // Play Game
-        // while(access){
-        //     System.out.println("\nWelcome to ZST, an Adventure RPG Game!\nPlease Choose Your Character:\n1. Knight\n2. Archer\n3. Rogue\n4. Mage\n5. Preist");
-        //     userChoice = sc.nextLine();
-        //     advHero = command.createCharacter(userChoice);
-        //     System.out.println("You have selected your Hero to be a(n) " + advHero.getHeroType());
-        // }
+        // Play Game
+        while(access){
+            System.out.println("\nWelcome to ZST, an Adventure RPG Game!\nPlease Choose Your Character:\n1. Knight\n2. Archer\n3. Rogue\n4. Mage\n5. Preist");
+            userChoice = sc.nextLine();
+            advHero = command.createCharacter(userChoice);
+            System.out.println("You have selected your Hero to be a(n) " + advHero.getHeroType());
+        }
 
         // new Game();
         sc.close();
