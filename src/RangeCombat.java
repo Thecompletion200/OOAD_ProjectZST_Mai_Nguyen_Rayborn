@@ -1,7 +1,7 @@
 package src;
 import java.util.Scanner;
 
-public class MeleeCombat implements FightStrategy{
+public class RangeCombat implements FightStrategy{
 
     Scanner sc = new Scanner(System.in);
     String userChoice = "";
