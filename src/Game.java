@@ -29,8 +29,13 @@ public class Game {
         monsterFactory MonsterFac = new monsterFactory();
         Command command = new Command();
         Scanner sc = new Scanner(System.in);
+        Maps Elden = new Elden();
+        Maps Fiji = new Fiji();
         String userChoice;
+        String newUsername;
+        String newPassword;
         boolean access = false;
+        boolean hasAccount = false;
         Monster currMonster;
         Heroes advHero = null;
 
@@ -49,29 +54,51 @@ public class Game {
         // melee.fight(testHero, testMonster);
         // testMonster.getMonsterName();
 
-        // Login
-        System.out.println("Please Login To Continue\nUsername:");
+        // Login or Create Account
+        System.out.println("Please Login To Continue\n1) Login\n2) Create an Account");
         userChoice = sc.nextLine();
-        System.out.println("Password:");
-        userChoice = userChoice + sc.nextLine();
-        access = command.login(userChoice);
+        //Login
+        if(userChoice.equals("1")){
+            System.out.println("Username:");
+            userChoice = sc.nextLine();
+            System.out.println("Password:");
+            userChoice = userChoice + sc.nextLine();
+            access = command.login(userChoice);
+        }
+        else if(userChoice.equals("2")){
+            System.out.println("Please enter your new username:");
+            newUsername= sc.nextLine();
+            System.out.println("Please enter a safe and secure password:");
+            newPassword = sc.nextLine();
+            System.out.println("Creating account. Please wait...");
+            hasAccount = command.createAccount(newUsername, newPassword);
+        }
 
         if(!access){
             System.out.println("Oops! Looks like that account information wasn't correct or that user does not exist!");
         }
         else{
+            hasAccount = true;
+            // NOT WORKING YET
             advHero = command.loadData(userChoice, advHero);
-            // System.out.println(advHero.getHeroType());
+            System.out.println(advHero.getHeroType());
         }
         //sc.close();
 
 
         // Play Game
-        while(access){
+        // Create character
+        while(!hasAccount){
             System.out.println("\nWelcome to ZST, an Adventure RPG Game!\nPlease Choose Your Character:\n1. Knight\n2. Archer\n3. Rogue\n4. Mage\n5. Preist");
             userChoice = sc.nextLine();
             advHero = command.createCharacter(userChoice);
             System.out.println("You have selected your Hero to be a(n) " + advHero.getHeroType());
+            advHero.move(Elden);
+            hasAccount = true;
+        }
+
+        while(hasAccount){
+
         }
 
         // new Game();
