@@ -1,10 +1,12 @@
 package src;
 
+import java.io.Serializable;
+
 import javax.swing.plaf.metal.MetalLabelUI;
 
 import src.Maps;
 
-public class Heroes{
+public class Heroes implements Serializable{
 
     private int maxHealth = 150;
     private int healthPoints = 150;
@@ -23,6 +25,10 @@ public class Heroes{
     public Items armor;
 
     private Maps currLocation;
+
+    public Heroes(){
+        super();
+    }
 
     public void move(Maps mapToMove){
         currLocation = mapToMove;
@@ -60,6 +66,12 @@ public class Heroes{
     }
     public void damageHero(int monsterDamage){
         this.healthPoints-= monsterDamage; 
+    }
+    public void setName(String name){
+        this.heroName = name;
+    }
+    public String getHeroName(){
+        return heroName;
     }
     public String getHeroType(){
         return heroType;

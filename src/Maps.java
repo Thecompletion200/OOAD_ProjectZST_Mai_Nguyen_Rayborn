@@ -1,6 +1,8 @@
 package src;
 
-public class Maps {
+import java.io.Serializable;
+
+public class Maps implements Serializable{
     public boolean hasHero;
     public Monster currMonster;
     public boolean hasShop;

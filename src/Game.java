@@ -25,14 +25,20 @@ public class Game {
     public static void main(String[] args) throws IOException {
         
         // Initialize Game
+        // Objects
         Game game = new Game();
         monsterFactory MonsterFac = new monsterFactory();
         Command command = new Command();
         Scanner sc = new Scanner(System.in);
         Maps Elden = new Elden();
         Maps Fiji = new Fiji();
+        SaveLoad saveLoad = new SaveLoad();
+
         String userChoice;
-        String newUsername;
+        String userName;
+        String password;
+        String loginInfo;
+        String newUsername = "";
         String newPassword;
         boolean access = false;
         boolean hasAccount = false;
@@ -57,31 +63,41 @@ public class Game {
         // Login or Create Account
         System.out.println("Please Login To Continue\n1) Login\n2) Create an Account");
         userChoice = sc.nextLine();
-        //Login
+
+        // Login
         if(userChoice.equals("1")){
+            // Username and Password
             System.out.println("Username:");
-            userChoice = sc.nextLine();
+            userName = sc.nextLine();
+            loginInfo = userName;
             System.out.println("Password:");
-            userChoice = userChoice + sc.nextLine();
+            loginInfo = loginInfo + sc.nextLine();
+            // Run Login Command and set 'hasAccount' to true
             access = command.login(userChoice);
+            hasAccount = true;
+            // Load the Hero
+            saveLoad.loadHero(userName);
         }
+        // Create an Account
         else if(userChoice.equals("2")){
+            // Creating New Account
             System.out.println("Please enter your new username:");
             newUsername= sc.nextLine();
             System.out.println("Please enter a safe and secure password:");
             newPassword = sc.nextLine();
             System.out.println("Creating account. Please wait...");
-            hasAccount = command.createAccount(newUsername, newPassword);
-        }
-
-        if(!access){
-            System.out.println("Oops! Looks like that account information wasn't correct or that user does not exist!");
+            access = command.createAccount(newUsername, newPassword);
+            // New user does not have an account
+            hasAccount = false;
         }
         else{
-            hasAccount = true;
-            // NOT WORKING YET
-            advHero = command.loadData(userChoice, advHero);
-            System.out.println(advHero.getHeroType());
+            System.err.println("That is an invalid option. Please try again!");
+        }
+
+        // If the user does not have access...
+        if(!access){
+            System.out.println("Oops! Looks like that account information wasn't correct, that user does not exist, or another error has occured!");
+            return;
         }
         //sc.close();
 
@@ -93,8 +109,14 @@ public class Game {
             userChoice = sc.nextLine();
             advHero = command.createCharacter(userChoice);
             System.out.println("You have selected your Hero to be a(n) " + advHero.getHeroType());
+            // Start in Map Elden
             advHero.move(Elden);
+            // Set userName
+            advHero.setName(newUsername);
+            // User now has an account
             hasAccount = true;
+            // Save the new Hero!
+            saveLoad.saveHero(advHero);
         }
 
         while(hasAccount){
