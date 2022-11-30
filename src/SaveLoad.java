@@ -43,10 +43,8 @@ public class SaveLoad {
 
                     // if the object is indeed a Hero object
                     if(obj instanceof Heroes){
-                        // TESTING
-                        System.out.println("WORKS");
-                        return (Heroes)obj;
                         // return the obj
+                        return (Heroes)obj;
                     }
                     else{
                         System.err.println("unexpected object in file.");

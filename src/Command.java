@@ -20,12 +20,12 @@ public class Command {
             while ((line = br.readLine()) != null) {
                 // process the line. If we find that the user has a valid user/pass, grant access
                 if(userInput.equals(line)){
-                    System.out.println("Login Attempt Successful!");
+                    System.out.println("Login Attempt Successful!\n");
                     return true;
                 }
             }
         }
-        System.out.println("Login Attempt Unsuccessful!");
+        System.out.println("Login Attempt Unsuccessful!\n");
         return false;
     }
 
@@ -74,11 +74,13 @@ public class Command {
         }
     }
 
-    public void displayEldenMenu(){
+    public void displayEldenMenu(Heroes advHero){
         String userChoice;
         System.out.println("1) Visit the shop\n2) Heal\n3) Move");
         userChoice = sc.nextLine();
         switch(userChoice){
+            case "0":
+                // do something
             case "1":
                 // do something
             case "2":

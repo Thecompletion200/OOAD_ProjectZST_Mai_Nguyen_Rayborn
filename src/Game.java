@@ -43,7 +43,6 @@ public class Game {
         // Game class variables
         String userChoice;
         String userName;
-        String password;
         String loginInfo;
         String newUsername = "";
         String newPassword;
@@ -83,7 +82,7 @@ public class Game {
             access = command.login(loginInfo);
             hasAccount = true;
             // Load the Hero
-            System.out.print("Welcome back to ZST " + userName + " !");
+            System.out.println("Welcome back to ZST " + userName + "!");
             advHero = saveLoad.loadHero(userName);
         }
         // Create an Account
@@ -132,7 +131,7 @@ public class Game {
 
             // Display Menu
             if(advHero.getLocationName().equals("Elden")){
-                command.displayEldenMenu();
+                command.displayEldenMenu(advHero);
             }
             else{
                 command.displayOthersMapsMenu();
