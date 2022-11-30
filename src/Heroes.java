@@ -1,6 +1,7 @@
 package src;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.swing.plaf.metal.MetalLabelUI;
 
@@ -23,6 +24,22 @@ public class Heroes implements Serializable{
     public String damageType = "Melee";
     public Items weapon;
     public Items armor;
+    public ArrayList<Maps> availMaps = new ArrayList<Maps>();
+
+    public void addMap(ArrayList<Maps> allMaps){
+        // Map Boss defeated
+        ArrayList<Maps> tempAvailMaps = new ArrayList<Maps>();
+        // Add Elden
+        tempAvailMaps.add(allMaps.get(0));
+        for(int i = 1; i < allMaps.size(); i++){
+            if(allMaps.get(i).getBossDefeated())
+            {   
+                tempAvailMaps.add(allMaps.get(i));
+            }
+        }
+        this.availMaps = tempAvailMaps;
+        System.out.println("Congratulations! You've unlocked a new map!");
+    }
 
     private Maps currLocation;
 
@@ -32,6 +49,7 @@ public class Heroes implements Serializable{
 
     public void move(Maps mapToMove){
         currLocation = mapToMove;
+        mapToMove.setHasHero(true);
     }
     public void purchase(Integer cost){
         gold = gold - cost;
@@ -88,6 +106,9 @@ public class Heroes implements Serializable{
     // }
     public Maps getLocation(){
         return currLocation;
+    }
+    public String getLocationName(){
+        return currLocation.getLocationName();
     }
     public Integer getExp(){
         return experiencePoints;

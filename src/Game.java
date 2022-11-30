@@ -30,10 +30,17 @@ public class Game {
         monsterFactory MonsterFac = new monsterFactory();
         Command command = new Command();
         Scanner sc = new Scanner(System.in);
-        Maps Elden = new Elden();
-        Maps Fiji = new Fiji();
+
+        // Maps
+        Maps elden = new Elden();
+        Maps fiji = new Fiji();
+        Maps redsea = new RedSea();
+        Maps firelinkshrine = new FireLinkShrine();
+        Maps indicapower = new Indicapower();
+        Maps sativatoff = new Sativatoff();
         SaveLoad saveLoad = new SaveLoad();
 
+        // Game class variables
         String userChoice;
         String userName;
         String password;
@@ -73,10 +80,11 @@ public class Game {
             System.out.println("Password:");
             loginInfo = loginInfo + sc.nextLine();
             // Run Login Command and set 'hasAccount' to true
-            access = command.login(userChoice);
+            access = command.login(loginInfo);
             hasAccount = true;
             // Load the Hero
-            saveLoad.loadHero(userName);
+            System.out.print("Welcome back to ZST " + userName + " !");
+            advHero = saveLoad.loadHero(userName);
         }
         // Create an Account
         else if(userChoice.equals("2")){
@@ -99,10 +107,7 @@ public class Game {
             System.out.println("Oops! Looks like that account information wasn't correct, that user does not exist, or another error has occured!");
             return;
         }
-        //sc.close();
 
-
-        // Play Game
         // Create character
         while(!hasAccount){
             System.out.println("\nWelcome to ZST, an Adventure RPG Game!\nPlease Choose Your Character:\n1. Knight\n2. Archer\n3. Rogue\n4. Mage\n5. Preist");
@@ -110,7 +115,7 @@ public class Game {
             advHero = command.createCharacter(userChoice);
             System.out.println("You have selected your Hero to be a(n) " + advHero.getHeroType());
             // Start in Map Elden
-            advHero.move(Elden);
+            advHero.move(elden);
             // Set userName
             advHero.setName(newUsername);
             // User now has an account
@@ -119,8 +124,21 @@ public class Game {
             saveLoad.saveHero(advHero);
         }
 
-        while(hasAccount){
+        // When account already exists
+        // Play the Game
 
+        while(hasAccount){
+            System.out.println("You are currently in " + advHero.getLocationName() + ". What would you like to do?\n");
+
+            // Display Menu
+            if(advHero.getLocationName().equals("Elden")){
+                command.displayEldenMenu();
+            }
+            else{
+                command.displayOthersMapsMenu();
+            }
+
+            //userChoice = sc.nextLine();
         }
 
         // new Game();

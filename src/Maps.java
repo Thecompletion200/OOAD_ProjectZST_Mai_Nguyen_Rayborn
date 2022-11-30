@@ -1,11 +1,52 @@
 package src;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Maps implements Serializable{
-    public boolean hasHero;
-    public Monster currMonster;
-    public boolean hasShop;
+    private boolean hasHero = false;
+    private Monster currMonster;
+    private boolean hasShop = false;
+    private boolean bossDefeated = false;
+    private String locationName;
+    
+
+    public void setLocationName(String lName){
+        this.locationName = lName;
+    }
+    public String getLocationName(){
+        return locationName;
+    }
+    public void setHasHero(Boolean hasHero){
+        this.hasHero = hasHero;
+    }
+    public Boolean getHasHero(){
+        return hasHero;
+    }
+    
+    // public void setCurrMonster(String currMonster){
+    //     this.currMonster = currMonster;
+    // }
+    // public String getCurrMonster(){
+    //     return currMonster;
+    // } 
+
+    public void setHasShop(Boolean hs)
+    {
+        this.hasShop = hs;
+    }
+    public Boolean getHasShop(){
+        return hasShop;
+    }
+
+    public void setBossDefeated()
+    {
+        this.bossDefeated = true;
+    }
+    public Boolean getBossDefeated(){
+        return bossDefeated;
+    }
+
     public void fight(FightStrategy fightMethod){
  
     }
@@ -13,8 +54,12 @@ public class Maps implements Serializable{
 
 // Town
 class Elden extends Maps {
-    public boolean hasShop = true;
     // Heals hero when entering map
+    public Elden(){
+        this.setHasShop(true);
+        this.setBossDefeated();
+        this.setLocationName("Elden");
+    }
     public void healHero(Heroes currHero){
         currHero.healHero();
     }
@@ -22,26 +67,24 @@ class Elden extends Maps {
 
 // First Map
 class Fiji extends Maps {
-    public boolean hasShop = false;
 }
 
 // Second Map
 class RedSea extends Maps {
-    public boolean hasShop = false;
+
 }
 
 // Third map
 class FireLinkShrine extends Maps {
-    public boolean hasShop = false;
+
 }
 
 // Fourth Map
 class Indicapower extends Maps {
-    public boolean hasShop = false;
-}
 
+}
 
 // Final Map
 class Sativatoff extends Maps {
-    public boolean hasShop = false;
+    
 }

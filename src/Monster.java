@@ -7,7 +7,9 @@ public class Monster {
     private Integer exp = 0;
     private Integer healthPoints = 0;
     private String monsterType = null;
-    
+    private Boolean isBoss = false;
+    //option to fight bosses after 10 creatures in the map
+
     //Monster Getters/Setters
     public String getMonsterName() {
         return monsterName;
@@ -47,6 +49,12 @@ public class Monster {
     {
         this.monsterType = type;
     }
+    public void setIsBoss(){
+        this.isBoss = true;
+    }
+    public Boolean getIsBoss(){
+        return isBoss;
+    }   
     public void die() {
         System.out.println(monsterName + "has fallen!");
     }
@@ -109,6 +117,7 @@ class BanditKing extends Monster {
         this.setExp(15);
         this.setHealthPoint(40);
         this.setMonsterType("Range");
+        this.setIsBoss();
     }
 }
 
@@ -163,6 +172,7 @@ class Dracula extends Monster {
         this.setExp(5);
         this.setHealthPoint(25);
         this.setMonsterType("Magic");
+        this.setIsBoss();
     }
 }
 
@@ -215,6 +225,7 @@ class Rardinos extends Monster {
         this.setExp(5);
         this.setHealthPoint(25);
         this.setMonsterType("Magic");
+        this.setIsBoss();
     }
 }
 
@@ -269,6 +280,7 @@ class Nokira extends Monster {
         this.setExp(5);
         this.setHealthPoint(25);
         this.setMonsterType("Range");
+        this.setIsBoss();
     }
 }
 
@@ -281,5 +293,6 @@ class SwordsmanOog extends Monster {
         this.setExp(5);
         this.setHealthPoint(25);
         this.setMonsterType("Melee");
+        this.setIsBoss();
     }
 }

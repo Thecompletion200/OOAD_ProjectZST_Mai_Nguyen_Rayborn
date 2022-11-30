@@ -28,8 +28,8 @@ public class SaveLoad {
         }
     }
 
-    public void loadHero(String userName){
-        String fileName = "src/userData/usersData.bin";
+    public Heroes loadHero(String userName){
+        String fileName = "src/userData/" + userName + "Data.bin";
 
         try{
             FileInputStream fin = new FileInputStream(fileName);
@@ -44,7 +44,9 @@ public class SaveLoad {
                     // if the object is indeed a Hero object
                     if(obj instanceof Heroes){
                         // TESTING
-                        System.out.println(obj.getClass());
+                        System.out.println("WORKS");
+                        return (Heroes)obj;
+                        // return the obj
                     }
                     else{
                         System.err.println("unexpected object in file.");
@@ -57,5 +59,7 @@ public class SaveLoad {
         } catch (IOException | ClassNotFoundException e){
             e.printStackTrace();
         }
+        
+        return null;
     }
 }

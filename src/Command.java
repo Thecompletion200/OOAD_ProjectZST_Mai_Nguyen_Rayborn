@@ -7,8 +7,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.util.Scanner;
 
 public class Command {
+
+    Scanner sc = new Scanner(System.in);
 
     public boolean login(String userInput) throws FileNotFoundException, IOException{
 
@@ -71,31 +74,38 @@ public class Command {
         }
     }
 
-    public Heroes loadData(String userInput, Heroes advHero) throws FileNotFoundException, IOException{
-
-        Load load = new Load();
-
-        try (BufferedReader br = new BufferedReader(new FileReader("src/userData/" + userInput + ".txt"))) {
-            String line;
-            int count = 0;
-            while ((line = br.readLine()) != null) {
-                count+=1;
-                // process the line. If we find that the user has a valid user/pass, grant access
-                switch(count){
-                    case 1:
-                        advHero = load.hero(line);
-                    case 2:
-                        // do something
-                    case 3:
-                        load.weapon(advHero, line);
-                        System.out.println(advHero);
-                    default:
-                        //do nothing
-
-                }
-
-            }
-            return advHero;
+    public void displayEldenMenu(){
+        String userChoice;
+        System.out.println("1) Visit the shop\n2) Heal\n3) Move");
+        userChoice = sc.nextLine();
+        switch(userChoice){
+            case "1":
+                // do something
+            case "2":
+                // heal
+            case "3":
+                // move
+            case "4":
+            default:
+                // do something;
         }
+    }
+    
+    public void displayOthersMapsMenu(){
+        String userChoice;
+        System.out.println("Approach Boss\nFight Monsters\nMove");
+        userChoice = sc.nextLine();
+        switch(userChoice){
+            case "1":
+                // do something
+            case "2":
+                // heal
+            case "3":
+                // move
+            case "4":
+            default:
+                // do something;
+        }
+        // if("Approach Boss")
     }
 }
