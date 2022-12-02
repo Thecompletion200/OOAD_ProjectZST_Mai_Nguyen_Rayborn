@@ -23,46 +23,54 @@ public class Maps implements Serializable{
     public Boolean getHasHero(){
         return hasHero;
     }
-    
+
     // public void setCurrMonster(String currMonster){
     //     this.currMonster = currMonster;
     // }
     // public String getCurrMonster(){
     //     return currMonster;
-    // } 
-
-    public void setHasShop(Boolean hs)
-    {
-        this.hasShop = hs;
-    }
-    public Boolean getHasShop(){
-        return hasShop;
-    }
-
+    // }
+    
     public void setBossDefeated()
     {
         this.bossDefeated = true;
     }
+
     public Boolean getBossDefeated(){
         return bossDefeated;
     }
 
     public void fight(FightStrategy fightMethod){
  
-    }
+    } 
 }
 
 // Town
 class Elden extends Maps {
-    // Heals hero when entering map
+    
     public Elden(){
-        this.setHasShop(true);
         this.setBossDefeated();
         this.setLocationName("Elden");
     }
+    // Heals hero for sum of gold
     public void healHero(Heroes currHero){
         currHero.healHero();
     }
+}
+
+// Shop
+class EldenPawn extends Maps {
+    // Shopping
+    public void setUpShop(){
+        
+    }
+
+
+    public EldenPawn(){
+        this.setBossDefeated();
+        this.setLocationName("The Elden Pawn");
+    }
+
 }
 
 // First Map

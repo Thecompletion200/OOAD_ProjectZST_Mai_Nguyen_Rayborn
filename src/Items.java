@@ -13,24 +13,49 @@ Magic:
 
 public class Items{
 
-    public int weaponDamage = 0;
-    public int armorRating = 0;
-    public String weaponType = "";
+    private int weaponDamage = 0;
+    private int armorRating = 0;
+    private String weaponType = "notAWeapon";
+    private String itemName = "";
+    private int potionStrength = 0;
 
-    public int getDamage(){
-        return weaponDamage;
+    public void setDamage(Integer dmg){
+        this.weaponDamage = dmg;
     }
-
+    public int getDamage(){
+        return this.weaponDamage;
+    }
+    public void setWeaponType(String type){
+        this.weaponType = type;
+    }
+    public String getWeaponType(){
+        return this.weaponType;
+    }
     public int getArmorRating(){
         return armorRating;
+    }
+    public void setItemName(String iName){
+        this.itemName = iName;
+    }
+    public String getItemName(){
+        return this.itemName;
+    }
+    public void setPotionStrength(Integer str){
+        this.potionStrength = str;
+    }
+    public Integer getPotionStrength(){
+        return this.potionStrength;
     }
     
 }
 
-class Sword extends Items{
+class WoodenSword extends Items{
 
-    public int weaponDamage = 100;
-    public int armorRating = 0;
+    public WoodenSword(){
+        this.setDamage(10);
+        this.setWeaponType("Melee");
+        this.setItemName("Wooden Sword");
+    }
 }
 
 class HELLBRINGER extends Items{

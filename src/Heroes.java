@@ -115,14 +115,14 @@ public class Heroes implements Serializable{
         //do something
     }
     public int attack(){
-        if(weapon.weaponType.equals("Melee")){
+        if(weapon.getWeaponType().equals("Melee")){
             return meleeDmg + weapon.getDamage();
         }
-        else if(weapon.weaponType.equals("Range")){
+        else if(weapon.getWeaponType().equals("Range")){
             return rangedDmg + weapon.getDamage();
 
         } 
-        else if(weapon.weaponType.equals("Magic")){
+        else if(weapon.getWeaponType().equals("Magic")){
             return magicDmg + weapon.getDamage();
         }
         // no weapon
@@ -175,7 +175,6 @@ class Rogue extends Heroes{
         this.setDamageType("Melee");
         this.setMaxHealth(125);
         this.setHealthPoints(125);
-
     }
     // public void levelUp(){
     //     if(experiencePoints == (level * 10)){
@@ -192,7 +191,6 @@ class Mage extends Heroes{
         this.setDamageType("Magic");
         this.setMaxHealth(100);
         this.setHealthPoints(100);
-
     }
     // public void levelUp(){
     //     if(experiencePoints == (level * 10)){

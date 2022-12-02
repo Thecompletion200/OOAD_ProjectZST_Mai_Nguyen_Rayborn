@@ -131,7 +131,23 @@ public class Game {
 
             // Display Menu
             if(advHero.getLocationName().equals("Elden")){
-                command.displayEldenMenu(advHero);
+                //command.displayEldenMenu(advHero);
+                System.out.println("1) Visit the shop\n2) Heal\n3) Move");
+                userChoice = sc.nextLine();
+                switch(userChoice){
+                    case "0":
+                        // do something
+                    case "1":
+                        // do something
+                    case "2":
+                        // heal
+                    case "3":
+                        // move
+                    case "4":
+                    default:
+                        // do something;
+                }
+
             }
             else{
                 command.displayOthersMapsMenu();
@@ -143,7 +159,6 @@ public class Game {
         // new Game();
         sc.close();
         return;
-
     }
 
     // public Game(){
