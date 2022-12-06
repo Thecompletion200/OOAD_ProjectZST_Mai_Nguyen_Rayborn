@@ -5,10 +5,11 @@ import javax.swing.JPanel;
 
 import java.awt.Container;
 import java.io.IOException;
-import java.awt.Color;
+// import java.security.spec.EdDSAParameterSpec;
+// import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Set;
+// import java.util.Set;
 
 public class Game {
 
@@ -30,6 +31,7 @@ public class Game {
         monsterFactory MonsterFac = new monsterFactory();
         Command command = new Command();
         Scanner sc = new Scanner(System.in);
+        SaveLoad saveLoad = new SaveLoad();
 
         // Maps
         Maps elden = new Elden();
@@ -38,6 +40,8 @@ public class Game {
         Maps firelinkshrine = new FireLinkShrine();
         Maps indicapower = new Indicapower();
         Maps sativatoff = new Sativatoff();
+        Shop eldenShop = new Shop();
+        // // Add maps to all maps list
         ArrayList<Maps> allMaps = new ArrayList<Maps>();
         allMaps.add(elden);
         allMaps.add(fiji);
@@ -45,7 +49,6 @@ public class Game {
         allMaps.add(firelinkshrine);
         allMaps.add(indicapower);
         allMaps.add(sativatoff);
-        SaveLoad saveLoad = new SaveLoad();
 
         // Game class variables
         String userChoice;
@@ -96,6 +99,8 @@ public class Game {
             // Load the Hero, Maps, and Shop
             System.out.println("Welcome back to ZST " + userName + "!");
             advHero = saveLoad.loadHero(userName);
+            eldenShop = saveLoad.loadShop(userName);
+
         }
         // Create an Account
         else if(userChoice.equals("2")){
@@ -129,12 +134,15 @@ public class Game {
             advHero.addMap(allMaps);
             // Start in Map Elden
             advHero.move("Elden");
+            // Load Shop with goodies
+            command.loadShopFresh(eldenShop);
             // Set userName
             advHero.setName(newUsername);
             // User now has an account
             hasAccount = true;
             // Save the new Hero!
             saveLoad.saveHero(advHero);
+            saveLoad.saveShop(advHero, eldenShop);
         }
 
         // When account already exists
@@ -143,10 +151,10 @@ public class Game {
         while(hasAccount){
             System.out.println("\n\nYou are currently in " + advHero.getLocationName() + ". What would you like to do?\n");
 
-            // Display Menu
-            if(advHero.getLocationName().equals("Elden")){
+            // Display Elden Menu
+            if(advHero.getLocationName().equalsIgnoreCase("Elden")){
                 //command.displayEldenMenu(advHero);
-                System.out.println("0) View Inventory\n1) Visit the shop\n2) Heal\n3) Move\n4) Save Game");
+                System.out.println("0) View Hero Inventory\n1) Visit the shop\n2) Heal\n3) Move\n4) Save Game");
                 userChoice = sc.nextLine();
                 switch(userChoice){
                     case "0":
@@ -154,20 +162,11 @@ public class Game {
                         break;
                     case "1":
                         // Vist the Shop
-                        // do something
+                        command.enterShop(advHero, eldenShop);
+                        break;
                     case "2":
                         // Heal Hero for Gold
-                        System.out.println("Would you like to heal your hero for " + advHero.getHeroLevel()*15 + " gold?\n1) Yes\n2) No");
-                        userChoice = sc.nextLine();
-                        if(userChoice.equals("1")){
-                            boolean p = advHero.purchase(advHero.getHeroLevel()*15);
-                            if(p){
-                                advHero.healHero();
-                            }
-                        }
-                        else{
-                            // do nothing
-                        }
+                        command.healHero(advHero);
                         break;
                     case "3":
                         System.out.println("Where would you like to move?");
@@ -177,8 +176,11 @@ public class Game {
                         break;
                     case "4":
                         saveLoad.saveHero(advHero);
+                        saveLoad.saveShop(advHero, eldenShop);
+                        break;
                     default:
-                        // do something;
+                    System.out.println("Sorry that seems to be an invalid option. Please try again");
+                        break;
                 }
 
             }

@@ -59,7 +59,7 @@ public class Heroes implements Serializable{
     }
     public void move(String mapToMove){
         for(int i = 0; i < this.availMaps.size(); i++){
-            if(this.availMaps.get(i).getLocationName().equals(mapToMove)){
+            if(this.availMaps.get(i).getLocationName().equalsIgnoreCase(mapToMove)){
                 this.currLocation = this.availMaps.get(i);
                 this.availMaps.get(i).setHasHero(true);
                 return;
@@ -130,19 +130,23 @@ public class Heroes implements Serializable{
         return this.armor;
     }
     public int attack(){
-        if(this.weapon.getWeaponType().equals("Melee")){
+        // if the player does not have weapon
+        if(this.weapon == null){
+            return meleeDmg;
+        }
+
+        // Melee damage
+        if(this.weapon.getWeaponType().equalsIgnoreCase("Melee")){
             return meleeDmg + this.weapon.getDamage();
         }
-        else if(this.weapon.getWeaponType().equals("Range")){
+        // Ranged Damage
+        else if(this.weapon.getWeaponType().equalsIgnoreCase("Range")){
             return rangedDmg + this.weapon.getDamage();
 
-        } 
-        else if(this.weapon.getWeaponType().equals("Magic")){
-            return magicDmg + this.weapon.getDamage();
         }
-        // no weapon
+        // Magic Damage
         else{
-            return meleeDmg;
+            return magicDmg + this.weapon.getDamage();
         }
     }
     // EXP and Gold and Inventory
