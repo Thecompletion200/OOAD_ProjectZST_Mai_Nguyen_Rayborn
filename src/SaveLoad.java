@@ -22,6 +22,7 @@ public class SaveLoad {
             oos.writeObject(advHero);
 
             oos.close();
+            System.out.println("Hero Successfully Saved!");
 
         } catch (IOException e){
             e.printStackTrace();

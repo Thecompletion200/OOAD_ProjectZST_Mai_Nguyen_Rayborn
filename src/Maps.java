@@ -52,10 +52,6 @@ class Elden extends Maps {
         this.setBossDefeated();
         this.setLocationName("Elden");
     }
-    // Heals hero for sum of gold
-    public void healHero(Heroes currHero){
-        currHero.healHero();
-    }
 }
 
 // Shop

@@ -111,6 +111,7 @@ public class Heroes implements Serializable{
     }
     public void healHero(){
         this.healthPoints = this.maxHealth;
+        System.out.println("You have been restored to full health!");
     }
     public void damageHero(int monsterDamage){
         this.healthPoints-= monsterDamage; 
@@ -167,8 +168,17 @@ public class Heroes implements Serializable{
     public void pickUpGold(Integer g){
         this.gold = gold + g;
     }
-    public void purchase(Integer cost){
-        this.gold = this.gold - cost;
+    public boolean purchase(Integer cost){
+        // If you don't have enough money...
+        if((this.gold - cost) < 0){
+            System.out.println("You do not have enough gold for this purchase...");
+            return false;
+        }
+        // otherwise
+        else{
+            this.gold = this.gold - cost;
+            return true;
+        }
     }
     public void addToHeroInventory(Items i){
         this.inventory.add(i);

@@ -146,16 +146,29 @@ public class Game {
             // Display Menu
             if(advHero.getLocationName().equals("Elden")){
                 //command.displayEldenMenu(advHero);
-                System.out.println("0) View Inventory\n1) Visit the shop\n2) Heal\n3) Move");
+                System.out.println("0) View Inventory\n1) Visit the shop\n2) Heal\n3) Move\n4) Save Game");
                 userChoice = sc.nextLine();
                 switch(userChoice){
                     case "0":
                         command.viewHeroInventory(advHero);
                         break;
                     case "1":
+                        // Vist the Shop
                         // do something
                     case "2":
-                        // heal
+                        // Heal Hero for Gold
+                        System.out.println("Would you like to heal your hero for " + advHero.getHeroLevel()*15 + " gold?\n1) Yes\n2) No");
+                        userChoice = sc.nextLine();
+                        if(userChoice.equals("1")){
+                            boolean p = advHero.purchase(advHero.getHeroLevel()*15);
+                            if(p){
+                                advHero.healHero();
+                            }
+                        }
+                        else{
+                            // do nothing
+                        }
+                        break;
                     case "3":
                         System.out.println("Where would you like to move?");
                         advHero.getAvailMoves();
@@ -163,6 +176,7 @@ public class Game {
                         advHero.move(userChoice);
                         break;
                     case "4":
+                        saveLoad.saveHero(advHero);
                     default:
                         // do something;
                 }
