@@ -214,8 +214,8 @@ class Archer extends Heroes{
     public Archer(){
         this.setHeroType("Archer");
         this.setDamageType("Range");
-        this.setMaxHealth(120);
-        this.setHealthPoints(120);
+        this.setMaxHealth(110);
+        this.setHealthPoints(110);
 
     }
     // @Override

@@ -14,6 +14,14 @@ Level 3: Firelink Shrine (Rardinos, Lord of Fire)
 Level 4: Indica Power (Nokira)
 Level 5: Sativatoff (Swordsman Oog)
 
+VERY IMPORTANT:
+Testing: When you test make a new account or log in.
+MAKE SURE YOURE IN PRJ FOLDER NOT SRC
+javac src/*.java
+java src/Game
+After you make changes to heros, items, or maps, you MUST delete the test character from users.txt and the test characters data.bin file. If you do not do this you will get errors.
+
+
 High Level Overview: We’re trying to implement all of the patterns and concepts that we’ve learned so far in this class. For example: Singleton, Strategy, Inheritance, Encapsulation, etc… 
 We are building a text-based adventure game (RPG) that will save a user’s state and store their game-related data in a text file so that they can pick up and play the game whenever they please.
 
