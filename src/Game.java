@@ -154,7 +154,7 @@ public class Game {
             // Display Elden Menu
             if(advHero.getLocationName().equalsIgnoreCase("Elden")){
                 //command.displayEldenMenu(advHero);
-                System.out.println("0) View Hero Inventory\n1) Visit the shop\n2) Heal\n3) Move\n4) Save Game");
+                System.out.println("0) View Hero Inventory\n1) Visit the shop\n2) Heal\n3) Move\n4) Save Game\n5) Quit");
                 userChoice = sc.nextLine();
                 switch(userChoice){
                     case "0":
@@ -177,6 +177,20 @@ public class Game {
                     case "4":
                         saveLoad.saveHero(advHero);
                         saveLoad.saveShop(advHero, eldenShop);
+                        break;
+                    case "5":
+                        System.out.println("Are you sure you want to quit? Have you saved your game?\n1) Yes, I want to quit\n2) No, take me back to the game!");
+                        userChoice = sc.nextLine();
+                        if(userChoice.equals("1")){
+                            System.out.println("Quitting Game... bye!");
+                            hasAccount = false;
+                        }
+                        else if(userChoice.equals("2")){
+                            break;
+                        }
+                        else{
+                            System.out.println("Oops! That was an invalid input. Returning back to the game.");
+                        }
                         break;
                     default:
                     System.out.println("Sorry that seems to be an invalid option. Please try again");
