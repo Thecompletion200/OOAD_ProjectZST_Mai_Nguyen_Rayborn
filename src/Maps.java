@@ -24,12 +24,12 @@ public class Maps implements Serializable{
         return hasHero;
     }
 
-    // public void setCurrMonster(String currMonster){
-    //     this.currMonster = currMonster;
-    // }
-    // public String getCurrMonster(){
-    //     return currMonster;
-    // }
+    public void setCurrMonster(Monster currMonster){
+        this.currMonster = currMonster;
+    }
+    public Monster getCurrMonster(){
+        return this.currMonster;
+    }
     
     public void setBossDefeated()
     {
@@ -64,8 +64,6 @@ class EldenPawn extends Maps {
     public void setUpShop(){
         
     }
-
-
     public EldenPawn(){
         this.setBossDefeated();
         this.setLocationName("The Elden Pawn");
@@ -75,24 +73,41 @@ class EldenPawn extends Maps {
 
 // First Map
 class Fiji extends Maps {
+
+    public Fiji(){
+        this.setLocationName("Fiji");
+    }
 }
 
 // Second Map
 class RedSea extends Maps {
 
+    public RedSea(){
+        this.setLocationName("Rea Sea");
+    }
 }
 
 // Third map
 class FireLinkShrine extends Maps {
+
+    public FireLinkShrine(){
+        this.setLocationName("The Fire Link Shrine");
+    }
 
 }
 
 // Fourth Map
 class Indicapower extends Maps {
 
+    public Indicapower(){
+        this.setLocationName("Indicapower");
+    }
 }
 
 // Final Map
 class Sativatoff extends Maps {
     
+    public Sativatoff(){
+        this.setLocationName("Sativatoff");
+    }
 }

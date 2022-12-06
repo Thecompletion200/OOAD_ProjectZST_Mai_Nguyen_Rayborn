@@ -26,11 +26,11 @@ public class Heroes implements Serializable{
     public int critMult = 1;
     private Maps currLocation;
     public ArrayList<Maps> availMaps = new ArrayList<Maps>();
+    private ArrayList<Items> inventory = new ArrayList<Items>();
 
     public Heroes(){
         super();
     }
-
     // Getters and Setters and Methods
     // Name
     public void setName(String name){
@@ -57,33 +57,44 @@ public class Heroes implements Serializable{
     public Maps getLocation(){
         return currLocation;
     }
-    public void move(Maps mapToMove){
-        currLocation = mapToMove;
-        mapToMove.setHasHero(true);
+    public void move(String mapToMove){
+        for(int i = 0; i < this.availMaps.size(); i++){
+            if(this.availMaps.get(i).getLocationName().equals(mapToMove)){
+                this.currLocation = this.availMaps.get(i);
+                this.availMaps.get(i).setHasHero(true);
+                return;
+            }
+        }
+        System.out.println("You've chosen a map you do not have access to or that doesn't exist!");
     }
     public String getLocationName(){
         return currLocation.getLocationName();
+    }
+    public void getAvailMoves(){
+        System.out.println("Available Maps: ");
+        for (int i = 0; i < this.availMaps.size(); i++){
+            if(i == this.availMaps.size() - 1){
+                System.out.print(this.availMaps.get(i).getLocationName() + "\n");
+            }
+            else{
+                System.out.print(this.availMaps.get(i).getLocationName() + ", ");
+            }
+        }
     }
     public void addMap(ArrayList<Maps> allMaps){
         // Map Boss defeated
         ArrayList<Maps> tempAvailMaps = new ArrayList<Maps>();
         // Add Elden
         tempAvailMaps.add(allMaps.get(0));
-        for(int i = 1; i < allMaps.size(); i++){
+        // Add other maps
+        for(int i = 0; i < allMaps.size() - 1; i++){
             if(allMaps.get(i).getBossDefeated())
             {   
-                tempAvailMaps.add(allMaps.get(i));
+                tempAvailMaps.add(allMaps.get(i+1));
             }
         }
         this.availMaps = tempAvailMaps;
         System.out.println("Congratulations! You've unlocked a new map!");
-    }
-    // EXP
-    public Integer getExp(){
-        return experiencePoints;
-    }
-    public void setExp(Integer exp){
-        this.experiencePoints = exp;
     }
     // Health
     public Integer getMaxHealthPoints(){
@@ -98,51 +109,90 @@ public class Heroes implements Serializable{
     public void setHealthPoints(Integer hp){
         this.healthPoints = hp;
     }
-    // Weapons and Damage
-    public void equipWeapon(Items weapon){
-        this.weapon = weapon;
-    }
-    public void purchase(Integer cost){
-        gold = gold - cost;
-    }
-    public void mine(){
-        //do something
-    }
-    public void loot(){
-        //do something
-    }
-    public void craft(){
-        //do something
-    }
-    public int attack(){
-        if(weapon.getWeaponType().equals("Melee")){
-            return meleeDmg + weapon.getDamage();
-        }
-        else if(weapon.getWeaponType().equals("Range")){
-            return rangedDmg + weapon.getDamage();
-
-        } 
-        else if(weapon.getWeaponType().equals("Magic")){
-            return magicDmg + weapon.getDamage();
-        }
-        // no weapon
-        else{
-            return meleeDmg;
-        }
-    }
     public void healHero(){
         this.healthPoints = this.maxHealth;
     }
     public void damageHero(int monsterDamage){
         this.healthPoints-= monsterDamage; 
     }
-    // public void levelUp(){
-    //     if(experiencePoints == (level * 10)){
-    //         this.meleeDmg += 10;
-    //         this.healthPoints = this.maxHealth;
-    //         this.gold += 100;
-    //     }
-    // }
+    // Weapons and Damage
+    public void equipWeapon(Items w){
+        this.weapon = w;
+    }
+    public Items getWeapon(){
+        return this.weapon;
+    }
+    public void equipArmor(Items a){
+        this.armor = a;
+    }
+    public Items getArmor(){
+        return this.armor;
+    }
+    public int attack(){
+        if(this.weapon.getWeaponType().equals("Melee")){
+            return meleeDmg + this.weapon.getDamage();
+        }
+        else if(this.weapon.getWeaponType().equals("Range")){
+            return rangedDmg + this.weapon.getDamage();
+
+        } 
+        else if(this.weapon.getWeaponType().equals("Magic")){
+            return magicDmg + this.weapon.getDamage();
+        }
+        // no weapon
+        else{
+            return meleeDmg;
+        }
+    }
+    // EXP and Gold and Inventory
+    public Integer getExp(){
+        return experiencePoints;
+    }
+    public void setExp(Integer exp){
+        this.experiencePoints = exp;
+    }
+    public Integer getHeroLevel(){
+        return this.level;
+    }
+    public void levelUp(){
+        if(this.experiencePoints == (this.level * 10)){
+            this.meleeDmg += 10;
+            this.healthPoints = this.maxHealth;
+            this.gold += this.level * 100;
+        }
+    }
+    public Integer getGold(){
+        return this.gold;
+    }
+    public void pickUpGold(Integer g){
+        this.gold = gold + g;
+    }
+    public void purchase(Integer cost){
+        this.gold = this.gold - cost;
+    }
+    public void addToHeroInventory(Items i){
+        this.inventory.add(i);
+    }
+    public void getHeroInventory(){
+        System.out.println("Inventory: ");
+        for(int i = 0; i < this.inventory.size(); i++){
+            if(i == this.inventory.size() - 1){
+                System.out.print(this.inventory.get(i).getItemName());
+            }
+            else{
+                System.out.print(this.inventory.get(i).getItemName() + ", ");
+            }
+        }
+    }
+    public void loot(){
+        //do something
+    }
+    public void mine(){
+        //do something
+    }
+    public void craft(){
+        //do something
+    }
 }
 
 class Knight extends Heroes{

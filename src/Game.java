@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import java.awt.Container;
 import java.io.IOException;
 import java.awt.Color;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -38,6 +38,13 @@ public class Game {
         Maps firelinkshrine = new FireLinkShrine();
         Maps indicapower = new Indicapower();
         Maps sativatoff = new Sativatoff();
+        ArrayList<Maps> allMaps = new ArrayList<Maps>();
+        allMaps.add(elden);
+        allMaps.add(fiji);
+        allMaps.add(redsea);
+        allMaps.add(firelinkshrine);
+        allMaps.add(indicapower);
+        allMaps.add(sativatoff);
         SaveLoad saveLoad = new SaveLoad();
 
         // Game class variables
@@ -81,7 +88,12 @@ public class Game {
             // Run Login Command and set 'hasAccount' to true
             access = command.login(loginInfo);
             hasAccount = true;
-            // Load the Hero
+            // If the user doesn't have an account...
+            if(!access){
+                System.out.println("Oops! Looks like that account information wasn't correct, that user does not exist, or another error has occured!");
+                return;
+            }
+            // Load the Hero, Maps, and Shop
             System.out.println("Welcome back to ZST " + userName + "!");
             advHero = saveLoad.loadHero(userName);
         }
@@ -94,6 +106,12 @@ public class Game {
             newPassword = sc.nextLine();
             System.out.println("Creating account. Please wait...");
             access = command.createAccount(newUsername, newPassword);
+            // If an account with that username already exist...
+            // If the user doesn't have an account...
+            if(!access){
+                System.out.println("Returning...");
+                return;
+            }
             // New user does not have an account
             hasAccount = false;
         }
@@ -101,20 +119,16 @@ public class Game {
             System.err.println("That is an invalid option. Please try again!");
         }
 
-        // If the user does not have access...
-        if(!access){
-            System.out.println("Oops! Looks like that account information wasn't correct, that user does not exist, or another error has occured!");
-            return;
-        }
-
         // Create character
         while(!hasAccount){
-            System.out.println("\nWelcome to ZST, an Adventure RPG Game!\nPlease Choose Your Character:\n1. Knight\n2. Archer\n3. Rogue\n4. Mage\n5. Preist");
+            System.out.println("\n\nWelcome to ZST, an Adventure RPG Game!\nPlease Choose Your Character:\n1. Knight\n2. Archer\n3. Rogue\n4. Mage\n5. Preist");
             userChoice = sc.nextLine();
             advHero = command.createCharacter(userChoice);
             System.out.println("You have selected your Hero to be a(n) " + advHero.getHeroType());
+            // Add First Map
+            advHero.addMap(allMaps);
             // Start in Map Elden
-            advHero.move(elden);
+            advHero.move("Elden");
             // Set userName
             advHero.setName(newUsername);
             // User now has an account
@@ -127,22 +141,27 @@ public class Game {
         // Play the Game
 
         while(hasAccount){
-            System.out.println("You are currently in " + advHero.getLocationName() + ". What would you like to do?\n");
+            System.out.println("\n\nYou are currently in " + advHero.getLocationName() + ". What would you like to do?\n");
 
             // Display Menu
             if(advHero.getLocationName().equals("Elden")){
                 //command.displayEldenMenu(advHero);
-                System.out.println("1) Visit the shop\n2) Heal\n3) Move");
+                System.out.println("0) View Inventory\n1) Visit the shop\n2) Heal\n3) Move");
                 userChoice = sc.nextLine();
                 switch(userChoice){
                     case "0":
-                        // do something
+                        command.viewHeroInventory(advHero);
+                        break;
                     case "1":
                         // do something
                     case "2":
                         // heal
                     case "3":
-                        // move
+                        System.out.println("Where would you like to move?");
+                        advHero.getAvailMoves();
+                        userChoice = sc.nextLine();
+                        advHero.move(userChoice);
+                        break;
                     case "4":
                     default:
                         // do something;

@@ -48,7 +48,7 @@ public class Command {
             FileWriter fileWriter = new FileWriter("src/userData/users.txt", true);
             fileWriter.write("\n" + userName + password);
             fileWriter.close();
-            System.out.print("Congradulations! Your account has been created!");
+            System.out.print("Congratulations! Your account has been created!");
             return true;
         } catch (IOException e){
             System.out.println("Logger: An error has occured in writing your file");
@@ -74,8 +74,17 @@ public class Command {
         }
     }
 
-    public void displayEldenMenu(Heroes advHero){
-        String userChoice;
+    public void viewHeroInventory(Heroes advHero){
+        System.out.println("Hero: " + advHero.getHeroName());
+        System.out.println("---------------------------------");
+        System.out.println("Loaction: " + advHero.getLocationName());
+        System.out.println("Level: " + advHero.getHeroLevel());
+        System.out.println("Exp: " + advHero.getExp() + "/" + advHero.getHeroLevel()*10);
+        System.out.println("Gold: " + advHero.getGold());
+        System.out.println("Equiped Weapon: " + advHero.getWeapon());
+        System.out.println("Equiped Armor: " + advHero.getArmor());
+        advHero.getHeroInventory();
+
     }
     
     public void displayOthersMapsMenu(){
