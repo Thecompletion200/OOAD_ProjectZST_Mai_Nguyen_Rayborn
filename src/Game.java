@@ -18,9 +18,7 @@ public class Game {
     JPanel titleNamePanel;
 
     public void fightCombat(FightStrategy fStrategy, Heroes h, Monster m){
-        System.out.println("yo");
         fStrategy.fight(h, m);
-        System.out.println("yo");
     }
 
     public static void main(String[] args) throws IOException {
@@ -44,6 +42,7 @@ public class Game {
         Maps indicapower = new Indicapower();
         Maps sativatoff = new Sativatoff();
         Shop eldenShop = new Shop();
+
         // // Add maps to all maps list
         ArrayList<Maps> allMaps = new ArrayList<Maps>();
         allMaps.add(elden);
@@ -61,7 +60,7 @@ public class Game {
         String newPassword;
         boolean access = false;
         boolean hasAccount = false;
-        Monster currMonster;
+        Monster currMonster = null;
         Heroes advHero = null;
 
 
@@ -69,7 +68,7 @@ public class Game {
         // Heroes testHero = new Knight();
         // Items sword = new Sword();
         // Items armor = new Armor();
-        Monster testMonster = MonsterFac.spawnBandit();
+        // Monster testMonster = MonsterFac.spawnBandit();
         // System.out.print(testMonster.getMonsterName());
         // //game.fightCombat(melee, testHero, testMonster);
         // // Give the adventurer a sword
@@ -142,6 +141,13 @@ public class Game {
             advHero.setName(newUsername);
             // User now has an account
             hasAccount = true;
+            // Give base gear...
+            Fist fist = new Fist();
+            advHero.addToHeroInventory(fist);
+            advHero.equipWeapon(fist);
+            Clothes clothes = new Clothes();
+            advHero.addToHeroInventory(clothes);
+            advHero.equipArmor(clothes);
             // Save the new Hero!
             saveLoad.saveHero(advHero);
             saveLoad.saveShop(advHero, eldenShop);
@@ -214,7 +220,10 @@ public class Game {
                     case "2":
                         // Fight Creatures
                         if(advHero.getDamgeType().equals("Melee")){
-                            game.fightCombat(melee, advHero, testMonster);
+                            // Spawn random creature
+                            currMonster = command.spawnMonster(advHero.getLocation());
+                            System.out.println(currMonster.getMonsterName());
+                            game.fightCombat(melee, advHero, currMonster);
                         }
                         break;
                     case "3":
@@ -244,6 +253,7 @@ public class Game {
                         else{
                             System.out.println("Oops! That was an invalid input. Returning back to the game.");
                         }
+                        break;
                     default:
                     System.out.println("Sorry that seems to be an invalid option. Please try again");
                         break;

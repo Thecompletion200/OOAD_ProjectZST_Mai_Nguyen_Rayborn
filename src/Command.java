@@ -7,6 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.TitlePaneLayout;
@@ -83,8 +85,8 @@ public class Command {
         System.out.println("Level: " + advHero.getHeroLevel());
         System.out.println("Exp: " + advHero.getExp() + "/" + advHero.getHeroLevel()*10);
         System.out.println("Gold: " + advHero.getGold());
-        System.out.println("Equiped Weapon: " + advHero.getWeapon());
-        System.out.println("Equiped Armor: " + advHero.getArmor());
+        System.out.println("Equiped Weapon: " + advHero.getWeapon().getItemName());
+        System.out.println("Equiped Armor: " + advHero.getArmor().getItemName());
         advHero.getHeroInventory();
 
     }
@@ -106,6 +108,7 @@ public class Command {
     
     public void loadShopFresh(Shop s){
         // Add potions
+
         // Add Weapons
         // Melee
         WoodenSword wSword = new WoodenSword();
@@ -142,6 +145,7 @@ public class Command {
         s.addToInventory(goldenScepter);
         BookofOmniscience bO = new BookofOmniscience();
         s.addToInventory(bO);
+        // Add Armor
         // Armor
         LeatherArmor lArmor = new LeatherArmor();
         s.addToInventory(lArmor);
@@ -164,15 +168,17 @@ public class Command {
             userChoice = sc.nextLine();
             switch(userChoice){
                 case "1":
+                    // Print the store inventory
                     shop.getStoreInventory();
                     break;
                 case "2":
                     System.out.println("What item would you like to purchase?");
                     userChoice = sc.nextLine();
+                    // Create a new item to take from the shelf
                     Items bought = shop.getItemFromShelf(userChoice);
                     // If the item isn't found
                     if(bought == null){
-                        System.out.println("Sorry that item is out of stock.");
+                        System.out.println("Sorry that item is out of stock or does not exist.");
                         break;
                     }
                     else{
@@ -181,7 +187,7 @@ public class Command {
                         if(p){
                             // Remove item from store
                             shop.removeFromInventory(bought);
-                            // Add to adv inventory
+                            // Add to hero inventory
                             advHero.addToHeroInventory(bought);
                             System.out.println("Item Bought Successfully!");
                         }
@@ -189,15 +195,86 @@ public class Command {
                     }
                     break;
                 case "3":
+                    // Leave The Shop
                     System.out.println("Leaving...");
                     stay = false;
                     break;
                 default:
+                    // Invalid Input
                     System.out.println("Sorry that was an invalid option.");
                     break;
             }
         }
         return;
 
+    }
+
+    public Monster spawnMonster(Maps map){
+        // Create a temp monster to return later
+        Monster returnMonster = null;
+        // Create a random number between 0 and 3
+        Random rand = new Random();
+        int randIndex = rand.nextInt(4);
+
+        switch(map.getLocationName()){
+            case "Fiji":
+                // Create new creatures
+                switch(randIndex){
+                    // Spawn random creature
+                    case 0:
+                        Bandit b = new Bandit();
+                        returnMonster = b;
+                        break;
+                    case 1:
+                        DiseasedCow dc = new DiseasedCow();
+                        returnMonster = dc;
+                        break;
+                    case 2:
+                        Snake s = new Snake();
+                        returnMonster = s;
+                        break;
+                    case 3:
+                        EvilApprentice eA = new EvilApprentice();
+                        returnMonster = eA;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case "Rea Sea":
+                // Create new creatures
+                switch(randIndex){
+                    // Spawn random creature
+                    case 0:
+                        Bandit b = new Bandit();
+                        returnMonster = b;
+                        break;
+                    case 1:
+                        DiseasedCow dc = new DiseasedCow();
+                        returnMonster = dc;
+                        break;
+                    case 2:
+                        Snake s = new Snake();
+                        returnMonster = s;
+                        break;
+                    case 3:
+                        EvilApprentice eA = new EvilApprentice();
+                        returnMonster = eA;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case "The Fire Link Shrine":
+                break;
+            case "Indicapower":
+                break;
+            case "Sativatoff":
+                break;
+            default:
+                break;
+        }
+
+        return returnMonster;
     }
 }

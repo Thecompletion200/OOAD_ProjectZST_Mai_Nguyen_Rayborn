@@ -61,6 +61,21 @@ public class Items implements Serializable{
     
 }
 
+// Base Gear
+class Fist extends Items{
+    public Fist(){
+        this.setDamage(1);
+        this.setItemCost(0);
+        this.setWeaponType("Melee");
+        this.setItemName("Fist");
+    }
+}
+class Clothes extends Items {
+    public Clothes(){
+        this.setArmorRating(5);
+        this.setItemName("Clothes");
+    }
+}
 // Melee Weapons
 class WoodenSword extends Items{
 
@@ -217,13 +232,6 @@ class BookofOmniscience extends Items {
         this.setDamage(45);
         this.setWeaponType("Magic");
         this.setItemName("Book of Omniscience");
-    }
-}
-
-class Clothes extends Items {
-    public Clothes(){
-        this.setArmorRating(5);
-        this.setItemName("Clothes");
     }
 }
 

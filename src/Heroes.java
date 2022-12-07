@@ -18,7 +18,7 @@ public class Heroes implements Serializable{
     // all of these we don't need to override
     private int experiencePoints = 0;
     private int level = 1;
-    private int gold = 50;
+    private int gold = 25;
     public Items weapon;
     public Items armor;
     public int meleeDmg = 10;
