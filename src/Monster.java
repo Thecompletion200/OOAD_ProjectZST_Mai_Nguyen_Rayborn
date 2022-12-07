@@ -5,7 +5,7 @@ public class Monster {
     private String monsterName = null;
     private Integer damage = 0;
     private Integer exp = 0;
-    private Integer healthPoints = 0;
+    private float healthPoints = 0;
     private String monsterType = null;
     private Boolean isBoss = false;
     //option to fight bosses after 10 creatures in the map
@@ -20,13 +20,13 @@ public class Monster {
     public Integer getExp(){
         return exp;
     }
-    public Integer getHealthPoints(){
+    public float getHealthPoints(){
         return healthPoints;
     }
     public String getMonsterType(){
         return monsterType;
       }
-    public void damageMonster(Integer damageTaken){
+    public void damageMonster(float damageTaken){
       this.healthPoints = this.healthPoints - damageTaken;
     }
     public void setMonsterName(String newName)
@@ -41,7 +41,7 @@ public class Monster {
     {
         this.exp = experience;
     }
-    public void setHealthPoint(int hp)
+    public void setHealthPoint(float hp)
     {
         this.healthPoints = hp;
     }

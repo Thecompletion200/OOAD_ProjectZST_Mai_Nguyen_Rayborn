@@ -32,6 +32,9 @@ public class Game {
         Command command = new Command();
         Scanner sc = new Scanner(System.in);
         SaveLoad saveLoad = new SaveLoad();
+        FightStrategy melee = new MeleeCombat();
+        FightStrategy range = new RangeCombat();
+        FightStrategy magic = new MagicCombat();
 
         // Maps
         Maps elden = new Elden();
@@ -66,9 +69,8 @@ public class Game {
         // Heroes testHero = new Knight();
         // Items sword = new Sword();
         // Items armor = new Armor();
-        // Monster testMonster = MonsterFac.spawnBandit();
+        Monster testMonster = MonsterFac.spawnBandit();
         // System.out.print(testMonster.getMonsterName());
-        // FightStrategy melee = new MeleeCombat();
         // //game.fightCombat(melee, testHero, testMonster);
         // // Give the adventurer a sword
         // testHero.equipWeapon(sword);
@@ -186,7 +188,7 @@ public class Game {
                             hasAccount = false;
                         }
                         else if(userChoice.equals("2")){
-                            break;
+                            // Do nothing
                         }
                         else{
                             System.out.println("Oops! That was an invalid input. Returning back to the game.");
@@ -198,8 +200,54 @@ public class Game {
                 }
 
             }
+            // Other map menus
             else{
-                command.displayOthersMapsMenu();
+                System.out.println("0) View Hero Inventory\n1) Search for loot\n2) Fight Creatures\n3) Move\n4) Challenge Boss\n5) Save Game\n6) Quit");
+                userChoice = sc.nextLine();
+                switch(userChoice){
+                    case "0":
+                        command.viewHeroInventory(advHero);
+                        break;
+                    case "1":
+                        // Search
+                        break;
+                    case "2":
+                        // Fight Creatures
+                        if(advHero.getDamgeType().equals("Melee")){
+                            game.fightCombat(melee, advHero, testMonster);
+                        }
+                        break;
+                    case "3":
+                        System.out.println("Where would you like to move?");
+                        advHero.getAvailMoves();
+                        userChoice = sc.nextLine();
+                        advHero.move(userChoice);
+                        break;
+                    case "4":
+
+                        break;
+                    case "5":
+                        //Save
+                        saveLoad.saveHero(advHero);
+                        saveLoad.saveShop(advHero, eldenShop);
+                        break;
+                    case "6":
+                        System.out.println("Are you sure you want to quit? Have you saved your game?\n1) Yes, I want to quit\n2) No, take me back to the game!");
+                        userChoice = sc.nextLine();
+                        if(userChoice.equals("1")){
+                            System.out.println("Quitting Game... bye!");
+                            hasAccount = false;
+                        }
+                        else if(userChoice.equals("2")){
+                            break;
+                        }
+                        else{
+                            System.out.println("Oops! That was an invalid input. Returning back to the game.");
+                        }
+                    default:
+                    System.out.println("Sorry that seems to be an invalid option. Please try again");
+                        break;
+                }
             }
 
             //userChoice = sc.nextLine();

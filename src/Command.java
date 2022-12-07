@@ -142,6 +142,17 @@ public class Command {
         s.addToInventory(goldenScepter);
         BookofOmniscience bO = new BookofOmniscience();
         s.addToInventory(bO);
+        // Armor
+        LeatherArmor lArmor = new LeatherArmor();
+        s.addToInventory(lArmor);
+        IronArmor iArmor = new IronArmor();
+        s.addToInventory(iArmor);
+        DragonArmor dArmor = new DragonArmor();
+        s.addToInventory(dArmor);
+        ZSTArmor zstArmor = new ZSTArmor();
+        s.addToInventory(zstArmor);
+        RastArmor rastArmor = new RastArmor();
+        s.addToInventory(rastArmor);
     }
 
     public void enterShop(Heroes advHero, Shop shop){
@@ -180,6 +191,7 @@ public class Command {
                 case "3":
                     System.out.println("Leaving...");
                     stay = false;
+                    break;
                 default:
                     System.out.println("Sorry that was an invalid option.");
                     break;
@@ -187,22 +199,5 @@ public class Command {
         }
         return;
 
-    }
-    public void displayOthersMapsMenu(){
-        String userChoice;
-        System.out.println("Approach Boss\nFight Monsters\nMove");
-        userChoice = sc.nextLine();
-        switch(userChoice){
-            case "1":
-                // do something
-            case "2":
-                // heal
-            case "3":
-                // move
-            case "4":
-            default:
-                // do something;
-        }
-        // if("Approach Boss")
     }
 }

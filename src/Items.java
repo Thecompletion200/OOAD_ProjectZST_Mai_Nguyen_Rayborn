@@ -7,7 +7,7 @@ Weapons:
 Melee: sword, longsword, sword of 1000 truths
 Range: shortbow, crossbow, longbow, bow of deceit 
 Magic: wood staff, iron staff, dragon staff
-Armor:
+Armor: 
 Melee:
 Ranged:
 Magic:
@@ -33,6 +33,9 @@ public class Items implements Serializable{
     }
     public String getWeaponType(){
         return this.weaponType;
+    }
+    public void setArmorRating(int rating){
+        this.armorRating = rating;
     }
     public int getArmorRating(){
         return armorRating;
@@ -217,9 +220,51 @@ class BookofOmniscience extends Items {
     }
 }
 
-class Armor extends Items {
-    
-    public int weaponDamage = 0;
-    public int armorRating = 50;
-    
+class Clothes extends Items {
+    public Clothes(){
+        this.setArmorRating(5);
+        this.setItemName("Clothes");
+    }
+}
+
+class LeatherArmor extends Items {
+    public LeatherArmor(){
+        this.setArmorRating(10);
+        this.setItemName("Leather Armor");
+    }
+}
+
+class IronArmor extends Items {
+    public IronArmor(){
+        this.setArmorRating(15);
+        this.setItemName("Iron Armor");
+    }
+}
+
+class DragonArmor extends Items {
+    public DragonArmor(){
+        this.setArmorRating(25);
+        this.setItemName("Dragon Armor");
+    }
+}
+
+class ZSTArmor extends Items {
+    public ZSTArmor(){
+        this.setArmorRating(35);
+        this.setItemName("ZST Armor");
+    }
+}
+
+class RastArmor extends Items {
+    public RastArmor(){
+        this.setArmorRating(50);
+        this.setItemName("Rast Armor");
+    }
+}
+
+class BakiArmor extends Items{
+    public BakiArmor(){
+        this.setArmorRating(100);
+        this.setItemName("Baki Armor");
+    }
 }

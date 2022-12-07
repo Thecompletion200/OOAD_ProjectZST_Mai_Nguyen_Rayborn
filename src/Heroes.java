@@ -9,11 +9,12 @@ import src.Maps;
 
 public class Heroes implements Serializable{
 
-    private int maxHealth = 150;
-    private int healthPoints = 150;
+    private float maxHealth = 150;
+    private float healthPoints = 150;
     private String heroType = "Knight";
     public String damageType = "Melee";
     private String heroName;
+    private float resistance = 0;
     // all of these we don't need to override
     private int experiencePoints = 0;
     private int level = 1;
@@ -23,7 +24,8 @@ public class Heroes implements Serializable{
     public int meleeDmg = 10;
     public int rangedDmg = 10;
     public int magicDmg = 10;
-    public int critMult = 1;
+    public float critMult = (float)1.25;
+    private float critChance = 0;
     private Maps currLocation;
     public ArrayList<Maps> availMaps = new ArrayList<Maps>();
     private ArrayList<Items> inventory = new ArrayList<Items>();
@@ -97,24 +99,33 @@ public class Heroes implements Serializable{
         System.out.println("Congratulations! You've unlocked a new map!");
     }
     // Health
-    public Integer getMaxHealthPoints(){
+    public float getMaxHealthPoints(){
         return this.maxHealth;
     }
-    public void setMaxHealth(Integer mHp){
+    public void setMaxHealth(float mHp){
         this.maxHealth = mHp;
     }
-    public Integer getHealthPoints(){
+    public float getHealthPoints(){
         return this.healthPoints;
     }
-    public void setHealthPoints(Integer hp){
+    public void setHealthPoints(float hp){
         this.healthPoints = hp;
+    }
+    public void setResistance(int r){
+        this.resistance = r;
+    }
+    public float getResistance(){
+        // Percentage
+        this.resistance = this.armor.getArmorRating()/100;
+        return this.resistance;
     }
     public void healHero(){
         this.healthPoints = this.maxHealth;
         System.out.println("You have been restored to full health!");
     }
-    public void damageHero(int monsterDamage){
-        this.healthPoints-= monsterDamage; 
+    public void damageHero(float monsterDamage){
+        float totalDmg = monsterDamage * (1-this.resistance);
+        this.healthPoints-= totalDmg; 
     }
     // Weapons and Damage
     public void equipWeapon(Items w){

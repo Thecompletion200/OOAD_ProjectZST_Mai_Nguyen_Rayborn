@@ -1,9 +1,11 @@
 package src;
 import java.util.Scanner;
+import java.util.*;
 
 public class MeleeCombat implements FightStrategy{
 
     Scanner sc = new Scanner(System.in);
+    Random rand = new Random();
     String userChoice = "";
 
     @Override
@@ -14,10 +16,27 @@ public class MeleeCombat implements FightStrategy{
             userChoice = sc.nextLine();
             if(userChoice.equals("1")){
 
-                monster.damageMonster(hero.attack());
-                System.out.println("You attack the " + monster.getMonsterName() + " for " + hero.attack() + " HP!");
-                hero.damageHero(monster.getDamage());
-                System.out.println(monster.getMonsterName() + " has attacked you for " + monster.getDamage() + " HP!");
+                // MELEE COMBAT SPECIFIC
+                // 5% chance we will amputate
+                if(rand.nextInt(100) < 5){
+                    // Special Attack
+                    System.out.println("You have aputated you enemy! You inflicted " + monster.getHealthPoints()*(float).25 + " damage!");
+                    monster.damageMonster(monster.getHealthPoints()*(float).25);
+                    // Enemy Attack
+                    System.out.println(monster.getMonsterName() + " has attacked you for " + monster.getDamage() + " HP!");
+                    hero.damageHero(monster.getDamage());
+                }
+                else{
+                    monster.damageMonster(hero.attack());
+                    System.out.println("You attack the " + monster.getMonsterName() + " with " + hero.getWeapon().getItemName() + " for " + hero.attack() + " HP!");
+                    if(monster.getHealthPoints() <= 0){
+                        break;
+                    }
+                    else{
+                        hero.damageHero(monster.getDamage());
+                        System.out.println(monster.getMonsterName() + " has attacked you for " + monster.getDamage() + " HP!");
+                    }
+                }
                 
             }
             else if(userChoice.equals("2"))

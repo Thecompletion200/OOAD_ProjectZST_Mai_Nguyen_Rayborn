@@ -33,3 +33,20 @@ User Database
         3rd line) Weapon
         4th line) Armor
         5th line) Inventory
+
+
+STILL UNDER DEVELOPMENT
+---------------------------
+Item prices
+Item damage
+Potions
+Other Map menu
+fighting
+spawning creature
+fighting boss
+kill character
+Creature balancing
+
+// maybe later
+mine?
+craft?
