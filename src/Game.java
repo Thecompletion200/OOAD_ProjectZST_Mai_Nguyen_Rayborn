@@ -74,9 +74,6 @@ public class Game {
         // // Give the adventurer a sword
         // testHero.equipWeapon(sword);
 
-        // melee.fight(testHero, testMonster);
-        // testMonster.getMonsterName();
-
         // Login or Create Account
         System.out.println("Please Login To Continue\n1) Login\n2) Create an Account");
         userChoice = sc.nextLine();
@@ -156,7 +153,7 @@ public class Game {
         // When account already exists
         // Play the Game
 
-        while(hasAccount){
+        while(hasAccount && !advHero.getIsDead()){
             System.out.println("\n\nYou are currently in " + advHero.getLocationName() + ". What would you like to do?\n");
 
             // Display Elden Menu
@@ -219,11 +216,33 @@ public class Game {
                         break;
                     case "2":
                         // Fight Creatures
-                        if(advHero.getDamgeType().equals("Melee")){
-                            // Spawn random creature
-                            currMonster = command.spawnMonster(advHero.getLocation());
-                            System.out.println(currMonster.getMonsterName());
-                            game.fightCombat(melee, advHero, currMonster);
+                        // Spawn random creature
+                        currMonster = command.spawnMonster(advHero.getLocation());
+                        System.out.println("You have run into a " + currMonster.getMonsterName() + "!");
+                        switch(advHero.getHeroType()){
+                            case "Knight":
+                                // Melee Combat
+                                game.fightCombat(melee, advHero, currMonster);
+                                break;
+                            case "Rogue":
+                                // Rogue Combat
+                                // game.fightCombat(rogue, advHero, currMonster);
+                                break;
+                            case "Archer":
+                                // Range Combat
+                                game.fightCombat(range, advHero, currMonster);
+                                break;
+                            case "Mage":
+                                // Magic Combat
+                                game.fightCombat(magic, advHero, currMonster);
+                                break;
+                            case "Priest":
+                                // Priest Combat
+                                // game.fightCombat(priest, advHero, currMonster);
+                                break;
+                            default:
+                                System.out.println("Oops, there seems to be an error in the fight method!");
+                                break;
                         }
                         break;
                     case "3":

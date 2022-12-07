@@ -11,6 +11,7 @@ public class Heroes implements Serializable{
 
     private float maxHealth = 150;
     private float healthPoints = 150;
+    private boolean isDead = false;
     private String heroType = "Knight";
     public String damageType = "Melee";
     private String heroName;
@@ -52,7 +53,7 @@ public class Heroes implements Serializable{
     public void setDamageType(String dType){
         this.damageType = dType;
     }
-    public String getDamgeType(){
+    public String getDamageType(){
         return damageType;
     }
     // Location
@@ -110,6 +111,12 @@ public class Heroes implements Serializable{
     }
     public void setHealthPoints(float hp){
         this.healthPoints = hp;
+    }
+    public void setIsDead(boolean t){
+        this.isDead = t;
+    }
+    public boolean getIsDead(){
+        return this.isDead;
     }
     public void setResistance(int r){
         this.resistance = r;
