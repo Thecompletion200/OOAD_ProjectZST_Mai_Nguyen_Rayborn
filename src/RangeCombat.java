@@ -44,6 +44,10 @@ public class RangeCombat implements FightStrategy{
             System.out.println("You have " + hero.getHealthPoints() + " HP");
             System.out.println("The " + monster.getMonsterName() + " has " + monster.getHealthPoints() + " HP");
         }
+        System.out.println("You have slain " + monster.getMonsterName() + "!");
+        // Check for level up and death
+        hero.checkIsDead();
+        hero.levelUp();
     }
     
 }

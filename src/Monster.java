@@ -68,9 +68,9 @@ class Bandit extends Monster {
     
     public Bandit() {
         this.setMonsterName("Bandit");
-        this.setDmg(5);
+        this.setDmg(20);
         this.setExp(5);
-        this.setHealthPoint(12);
+        this.setHealthPoint(10);
         this.setMonsterType("Melee");
     }
 }
@@ -79,9 +79,9 @@ class DiseasedCow extends Monster {
     
     public DiseasedCow() {
         this.setMonsterName("Diseased Cow");
-        this.setDmg(5);
+        this.setDmg(25);
         this.setExp(5);
-        this.setHealthPoint(12);
+        this.setHealthPoint(15);
         this.setMonsterType("Melee");
     }
 }
@@ -90,9 +90,9 @@ class Snake extends Monster {
     
     public Snake() {
         this.setMonsterName("Snake");
-        this.setDmg(5);
+        this.setDmg(10);
         this.setExp(5);
-        this.setHealthPoint(12);
+        this.setHealthPoint(25);
         this.setMonsterType("Range");
     };
 }
@@ -101,9 +101,9 @@ class EvilApprentice extends Monster {
 
     public EvilApprentice() {
         this.setMonsterName("Evil Apprentice");
-        this.setDmg(5);
+        this.setDmg(30);
         this.setExp(5);
-        this.setHealthPoint(12);
+        this.setHealthPoint(8);
         this.setMonsterType("Magic");
     }
 }
@@ -113,8 +113,8 @@ class BanditKing extends Monster {
 
     public BanditKing() {
         this.setMonsterName("Bandit King");
-        this.setDmg(12);
-        this.setExp(15);
+        this.setDmg(40);
+        this.setExp(20);
         this.setHealthPoint(40);
         this.setMonsterType("Range");
         this.setIsBoss();

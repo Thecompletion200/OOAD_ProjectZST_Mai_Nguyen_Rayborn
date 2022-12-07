@@ -43,9 +43,14 @@ public class MeleeCombat implements FightStrategy{
             {
                 return;
             }
-            System.out.println("You have " + hero.getHealthPoints() + " HP");
+            System.out.println("\nYou have " + hero.getHealthPoints() + " HP");
             System.out.println("The " + monster.getMonsterName() + " has " + monster.getHealthPoints() + " HP");
         }
+        hero.giveExp(monster.getExp());
+        System.out.println("You have slain " + monster.getMonsterName() + "!");
+        // Check for level up and death
+        hero.checkIsDead();
+        hero.levelUp();
     }
     
 }

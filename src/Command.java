@@ -81,12 +81,20 @@ public class Command {
     public void viewHeroInventory(Heroes advHero){
         System.out.println("Hero: " + advHero.getHeroName());
         System.out.println("---------------------------------");
+        System.out.println("Health: " + advHero.getHealthPoints() + "/" +advHero.getMaxHealthPoints());
+        System.out.println("Melee Damage: " + advHero.meleeDmg);
+        System.out.println("Range Damage: " + advHero.rangedDmg);
+        System.out.println("Magic Damage: " + advHero.magicDmg);
+        System.out.println("Crit Chance: " + advHero.critChance);
+        System.out.println("Crit Multiplier: " + advHero.critMult);
         System.out.println("Loaction: " + advHero.getLocationName());
         System.out.println("Level: " + advHero.getHeroLevel());
         System.out.println("Exp: " + advHero.getExp() + "/" + advHero.getHeroLevel()*10);
+        System.out.println("Inventory:");
+        System.out.println("---------------------------------");
         System.out.println("Gold: " + advHero.getGold());
-        System.out.println("Equiped Weapon: " + advHero.getWeapon().getItemName());
-        System.out.println("Equiped Armor: " + advHero.getArmor().getItemName());
+        System.out.println("Equiped Weapon: " + advHero.getWeapon().getItemName() + " - " + advHero.getWeapon().getDamage() + " dmg");
+        System.out.println("Equiped Armor: " + advHero.getArmor().getItemName() + " - " + advHero.getArmor().getArmorRating() + " armor rating");
         advHero.getHeroInventory();
 
     }
