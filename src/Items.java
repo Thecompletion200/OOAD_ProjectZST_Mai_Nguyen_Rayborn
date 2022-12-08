@@ -235,6 +235,7 @@ class BookofOmniscience extends Items {
     }
 }
 
+// Armor
 class LeatherArmor extends Items {
     public LeatherArmor(){
         this.setArmorRating(10);
@@ -274,5 +275,12 @@ class BakiArmor extends Items{
     public BakiArmor(){
         this.setArmorRating(100);
         this.setItemName("Baki Armor");
+    }
+}
+
+class GodsTouch extends Items{
+    public GodsTouch(){
+        this.setArmorRating(999999);
+        this.setItemName("God's Touch");
     }
 }

@@ -17,11 +17,7 @@ public class Game {
     Container con;
     JPanel titleNamePanel;
 
-    public void fightCombat(FightStrategy fStrategy, Heroes h, Monster m){
-        fStrategy.fight(h, m);
-    }
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         
         // Initialize Game
         // Objects
@@ -30,9 +26,6 @@ public class Game {
         Command command = new Command();
         Scanner sc = new Scanner(System.in);
         SaveLoad saveLoad = new SaveLoad();
-        FightStrategy melee = new MeleeCombat();
-        FightStrategy range = new RangeCombat();
-        FightStrategy magic = new MagicCombat();
 
         // Maps
         Maps elden = new Elden();
@@ -95,7 +88,7 @@ public class Game {
                 return;
             }
             // Load the Hero, Maps, and Shop
-            System.out.println("Welcome back to ZST " + userName + "!");
+            System.out.println("Welcome back to ZST, " + userName + "!");
             advHero = saveLoad.loadHero(userName);
             eldenShop = saveLoad.loadShop(userName);
 
@@ -120,6 +113,7 @@ public class Game {
         }
         else{
             System.err.println("That is an invalid option. Please try again!");
+            return;
         }
 
         // Create character
@@ -138,13 +132,19 @@ public class Game {
             advHero.setName(newUsername);
             // User now has an account
             hasAccount = true;
-            // Give base gear...
-            Fist fist = new Fist();
-            advHero.addToHeroInventory(fist);
-            advHero.equipWeapon(fist);
-            Clothes clothes = new Clothes();
-            advHero.addToHeroInventory(clothes);
-            advHero.equipArmor(clothes);
+            if(newUsername.equalsIgnoreCase("admin")){
+                // ADMIN CHEATS
+                command.adminLogin(advHero);
+            }
+            else{
+                // Give base gear...
+                Fist fist = new Fist();
+                advHero.addToHeroInventory(fist);
+                advHero.equipWeapon(fist);
+                Clothes clothes = new Clothes();
+                advHero.addToHeroInventory(clothes);
+                advHero.equipArmor(clothes);
+            }
             // Save the new Hero!
             saveLoad.saveHero(advHero);
             saveLoad.saveShop(advHero, eldenShop);
@@ -219,31 +219,7 @@ public class Game {
                         // Spawn random creature
                         currMonster = command.spawnMonster(advHero.getLocation());
                         System.out.println("You have run into a " + currMonster.getMonsterName() + "!");
-                        switch(advHero.getHeroType()){
-                            case "Knight":
-                                // Melee Combat
-                                game.fightCombat(melee, advHero, currMonster);
-                                break;
-                            case "Rogue":
-                                // Rogue Combat
-                                // game.fightCombat(rogue, advHero, currMonster);
-                                break;
-                            case "Archer":
-                                // Range Combat
-                                game.fightCombat(range, advHero, currMonster);
-                                break;
-                            case "Mage":
-                                // Magic Combat
-                                game.fightCombat(magic, advHero, currMonster);
-                                break;
-                            case "Priest":
-                                // Priest Combat
-                                // game.fightCombat(priest, advHero, currMonster);
-                                break;
-                            default:
-                                System.out.println("Oops, there seems to be an error in the fight method!");
-                                break;
-                        }
+                        command.fight(advHero, currMonster);
                         break;
                     case "3":
                         System.out.println("Where would you like to move?");
@@ -252,7 +228,32 @@ public class Game {
                         advHero.move(userChoice);
                         break;
                     case "4":
+                        // Fight the Boss
+                        // Player must have defeated at least 15 monsters to fight the boss
+                        if(advHero.getLocation().getMonstersDefeated() > 10){
+                            System.out.println("Are you sure you want to fight the boss?\n1) Yes\n2) No");
+                            userChoice = sc.nextLine();
+                            // Fight the Boss
+                            if(userChoice.equals("1")){
+                                currMonster = command.spawnBoss(advHero.getLocation());
+                                command.fight(advHero, currMonster);
+                                // If the hero dies, this text wont pop up. We wont have to deal with that check...
+                                // We need to check for, if the hero ran
+                                if(!advHero.ran){
+                                    advHero.getLocation().setBossDefeated(true);
+                                    System.out.println(advHero.getLocationName() + advHero.getLocation().getBossDefeated());
+                                    System.out.println(allMaps.get(1).getLocationName() + allMaps.get(1).getBossDefeated());
+                                    advHero.addMap(allMaps);
+                                }
 
+                            }
+                            else{
+                                System.out.println("Returning to map...");
+                            }
+                        }
+                        else{
+                            System.out.println("Sorry you have to defeat 10 monsters here before you approach the boss! You have defeated " + advHero.getLocation().getMonstersDefeated());
+                        }
                         break;
                     case "5":
                         //Save
@@ -278,26 +279,9 @@ public class Game {
                         break;
                 }
             }
-
             //userChoice = sc.nextLine();
         }
-
-        // new Game();
         sc.close();
         return;
     }
-
-    // public Game(){
-    //     window = new JFrame();
-    //     window.setSize(800, 600);
-    //     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //     window.getContentPane().setBackground(Color.black);
-    //     window.setLayout(null);
-    //     window.setVisible(true);
-    //     con = window.getContentPane();
-
-    //     titleNamePanel = new JPanel();
-    //     titleNamePanel.setBounds(100, 100, 600, 150);
-
-    // }
 }

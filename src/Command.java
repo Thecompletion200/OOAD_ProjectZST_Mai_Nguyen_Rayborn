@@ -10,12 +10,26 @@ import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.TitlePaneLayout;
 
 public class Command {
 
     Scanner sc = new Scanner(System.in);
+
+    public void adminLogin(Heroes admin){
+        HELLBRINGER hellbringer = new HELLBRINGER();
+        GodsTouch godsTouch = new GodsTouch();
+        admin.addToHeroInventory(hellbringer);
+        admin.addToHeroInventory(godsTouch);
+        admin.equipWeapon(hellbringer);
+        admin.equipArmor(godsTouch);
+    }
+
+    public void fightCombat(FightStrategy fStrategy, Heroes h, Monster m){
+        fStrategy.fight(h, m);
+    }
 
     public boolean login(String userInput) throws FileNotFoundException, IOException{
 
@@ -79,23 +93,17 @@ public class Command {
     }
 
     public void viewHeroInventory(Heroes advHero){
-        System.out.println("Hero: " + advHero.getHeroName());
-        System.out.println("---------------------------------");
-        System.out.println("Health: " + advHero.getHealthPoints() + "/" +advHero.getMaxHealthPoints());
-        System.out.println("Melee Damage: " + advHero.meleeDmg);
-        System.out.println("Range Damage: " + advHero.rangedDmg);
-        System.out.println("Magic Damage: " + advHero.magicDmg);
+        System.out.printf("%-40s %-10s\n", "Hero: " + advHero.getHeroName(), "Inventory:");
+        System.out.printf("%-40s %-10s\n", "------------------------------", "------------------------------");
+        System.out.printf("%-40s %-10s\n", "Health: " + advHero.getHealthPoints() + "/" +advHero.getMaxHealthPoints(), "Gold: " + advHero.getGold() );
+        System.out.printf("%-40s %-10s\n", "Melee Damage: " + advHero.meleeDmg, "Equiped Weapon: " + advHero.getWeapon().getItemName() + " - " + advHero.getWeapon().getDamage() + " dmg");
+        System.out.printf("%-40s %-10s\n", "Range Damage: " + advHero.rangedDmg, "Equiped Armor: " + advHero.getArmor().getItemName() + " - " + advHero.getArmor().getArmorRating() + " armor rating");
+        System.out.printf("%-40s %-10s\n", "Magic Damage: " + advHero.magicDmg, advHero.getHeroInventory());
         System.out.println("Crit Chance: " + advHero.critChance);
         System.out.println("Crit Multiplier: " + advHero.critMult);
         System.out.println("Loaction: " + advHero.getLocationName());
         System.out.println("Level: " + advHero.getHeroLevel());
         System.out.println("Exp: " + advHero.getExp() + "/" + advHero.getHeroLevel()*10);
-        System.out.println("Inventory:");
-        System.out.println("---------------------------------");
-        System.out.println("Gold: " + advHero.getGold());
-        System.out.println("Equiped Weapon: " + advHero.getWeapon().getItemName() + " - " + advHero.getWeapon().getDamage() + " dmg");
-        System.out.println("Equiped Armor: " + advHero.getArmor().getItemName() + " - " + advHero.getArmor().getArmorRating() + " armor rating");
-        advHero.getHeroInventory();
 
     }
     
@@ -254,35 +262,159 @@ public class Command {
                 switch(randIndex){
                     // Spawn random creature
                     case 0:
-                        Bandit b = new Bandit();
-                        returnMonster = b;
+                        SkeletonArcher sa = new SkeletonArcher();
+                        returnMonster = sa;
                         break;
                     case 1:
-                        DiseasedCow dc = new DiseasedCow();
-                        returnMonster = dc;
+                        Troll t = new Troll();
+                        returnMonster = t;
                         break;
                     case 2:
-                        Snake s = new Snake();
-                        returnMonster = s;
+                        Zombie z = new Zombie();
+                        returnMonster = z;
                         break;
                     case 3:
-                        EvilApprentice eA = new EvilApprentice();
-                        returnMonster = eA;
+                        Vampire v = new Vampire();
+                        returnMonster = v;
                         break;
                     default:
                         break;
                 }
                 break;
             case "The Fire Link Shrine":
+                // Create new creatures
+                switch(randIndex){
+                    // Spawn random creature
+                    case 0:
+                        InfernalDragon iDragon = new InfernalDragon();
+                        returnMonster = iDragon;
+                        break;
+                    case 1:
+                        Giant g = new Giant();
+                        returnMonster = g;
+                        break;
+                    case 2:
+                        Witch w = new Witch();
+                        returnMonster = w;
+                        break;
+                    case 3:
+                        MolotovMan mMan = new MolotovMan();
+                        returnMonster = mMan;
+                        break;
+                    default:
+                        break;
+                }
                 break;
             case "Indicapower":
-                break;
-            case "Sativatoff":
+                // Create new creatures
+                switch(randIndex){
+                    // Spawn random creature
+                    case 0:
+                        Parasite p = new Parasite();
+                        returnMonster = p;
+                        break;
+                    case 1:
+                        VenusMantrap vMantrap = new VenusMantrap();
+                        returnMonster = vMantrap;
+                        break;
+                    case 2:
+                        OldDrunkMan oldDrunkMan = new OldDrunkMan();
+                        returnMonster = oldDrunkMan;
+                        break;
+                    case 3:
+                        Regi regi = new Regi();
+                        returnMonster = regi;
+                        break;
+                    default:
+                        break;
+                }
                 break;
             default:
                 break;
         }
 
         return returnMonster;
+    }
+
+    public Monster spawnBoss(Maps map) throws InterruptedException{
+        // Create a temp monster to return later
+        Monster returnMonster = null;
+        switch(map.getLocationName()){
+            case "Fiji":
+                // Create new creatures
+                BanditKing bK = new BanditKing();
+                returnMonster = bK;
+                System.out.println("Heavy footsteps approach...");
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("A large figure approaches... It looks like...");
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println("\nYou have encountered " + returnMonster.getMonsterName());
+                break;
+            case "Rea Sea":
+                // Create new creatures
+                Dracula d = new Dracula();
+                returnMonster = d;
+                System.out.println("A Dark mist surrounds you...");
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("Red eyes appear in the mist...");
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println("\nYou have encountered " + returnMonster.getMonsterName());
+                break;
+            case "The Fire Link Shrine":
+                // Create new creatures
+                Rardinos r = new Rardinos();
+                returnMonster = r;
+                System.out.println("You begin to sweat... The temperature in the room is increasing...");
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("The sound of fire creeps up on you...");
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println("\nYou have encountered " + returnMonster.getMonsterName());
+                break;
+            case "Indicapower":
+                Nokira nokira = new Nokira();
+                returnMonster = nokira;
+                System.out.println("It's quiet...");
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("The shadows grow");
+                TimeUnit.SECONDS.sleep(3);
+                System.out.println("\nYou have encountered " + returnMonster.getMonsterName());
+                break;
+            default:
+                break;
+        }
+        return returnMonster;
+        }
+
+    public void fight(Heroes advHero, Monster currMonster){
+        FightStrategy melee = new MeleeCombat();
+        FightStrategy range = new RangeCombat();
+        FightStrategy magic = new MagicCombat();
+        Command c = new Command();
+
+        switch(advHero.getHeroType()){
+            case "Knight":
+                // Melee Combat
+                c.fightCombat(melee, advHero, currMonster);
+                break;
+            case "Rogue":
+                // Rogue Combat
+                // game.fightCombat(rogue, advHero, currMonster);
+                break;
+            case "Archer":
+                // Range Combat
+                c.fightCombat(range, advHero, currMonster);
+                break;
+            case "Mage":
+                // Magic Combat
+                c.fightCombat(magic, advHero, currMonster);
+                break;
+            case "Priest":
+                // Priest Combat
+                // game.fightCombat(priest, advHero, currMonster);
+                break;
+            default:
+                System.out.println("Oops, there seems to be an error in the fight method!");
+                break;
+        }
     }
 }

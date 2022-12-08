@@ -69,8 +69,8 @@ class Bandit extends Monster {
     public Bandit() {
         this.setMonsterName("Bandit");
         this.setDmg(20);
-        this.setExp(5);
-        this.setHealthPoint(10);
+        this.setExp(3);
+        this.setHealthPoint(12);
         this.setMonsterType("Melee");
     }
 }
@@ -91,7 +91,7 @@ class Snake extends Monster {
     public Snake() {
         this.setMonsterName("Snake");
         this.setDmg(10);
-        this.setExp(5);
+        this.setExp(8);
         this.setHealthPoint(25);
         this.setMonsterType("Range");
     };
@@ -101,9 +101,9 @@ class EvilApprentice extends Monster {
 
     public EvilApprentice() {
         this.setMonsterName("Evil Apprentice");
-        this.setDmg(30);
-        this.setExp(5);
-        this.setHealthPoint(8);
+        this.setDmg(35);
+        this.setExp(10);
+        this.setHealthPoint(30);
         this.setMonsterType("Magic");
     }
 }
@@ -113,9 +113,9 @@ class BanditKing extends Monster {
 
     public BanditKing() {
         this.setMonsterName("Bandit King");
-        this.setDmg(40);
+        this.setDmg(80);
         this.setExp(20);
-        this.setHealthPoint(40);
+        this.setHealthPoint(70);
         this.setMonsterType("Range");
         this.setIsBoss();
     }
@@ -220,7 +220,7 @@ class MolotovMan extends Monster {
 // Third Boss
 class Rardinos extends Monster {
     public Rardinos() {
-        this.setMonsterName("Rardinos, Lord of Fire");
+        this.setMonsterName("Rardinos, The Lord of Fire");
         this.setDmg(10);
         this.setExp(5);
         this.setHealthPoint(25);
@@ -275,7 +275,7 @@ class Regi extends Monster {
 class Nokira extends Monster {
 
     public Nokira() {
-        this.setMonsterName("Nokira");
+        this.setMonsterName("Nokira, The Assassin");
         this.setDmg(10);
         this.setExp(5);
         this.setHealthPoint(25);

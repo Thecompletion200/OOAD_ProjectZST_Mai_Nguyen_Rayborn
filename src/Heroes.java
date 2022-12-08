@@ -27,6 +27,7 @@ public class Heroes implements Serializable{
     public int magicDmg = 10;
     public float critMult = (float)1.5;
     public float critChance = 0;
+    public boolean ran = false;
     private Maps currLocation;
     public ArrayList<Maps> availMaps = new ArrayList<Maps>();
     private ArrayList<Items> inventory = new ArrayList<Items>();
@@ -91,9 +92,11 @@ public class Heroes implements Serializable{
         tempAvailMaps.add(allMaps.get(0));
         // Add other maps
         for(int i = 0; i < allMaps.size() - 1; i++){
+            System.out.println(allMaps.get(i+1).getLocationName() + allMaps.get(i+1).getBossDefeated());
             if(allMaps.get(i).getBossDefeated())
             {   
                 tempAvailMaps.add(allMaps.get(i+1));
+                System.out.println(allMaps.get(i+1) + " has opened!");
             }
         }
         this.availMaps = tempAvailMaps;
@@ -195,14 +198,17 @@ public class Heroes implements Serializable{
     }
     public void levelUp(){
         // In order to level up, we need to reach exp equivalent to level*10
-        if(this.experiencePoints >= (this.level * 10)){
-            // Increase Stats
-            this.level++;
-            this.meleeDmg *= 1.25;
-            this.maxHealth *= 1.25;
-            this.healthPoints = this.maxHealth;
-            this.gold += this.level * 100;
-            System.out.println("Congratulations! You have leveled up! You are now level " + this.level + "!\nDamage and Health have been increased.\n100 gold has been added to your inventory.\n ");
+        // We will repeat 10 times in case we level up more than once
+        for(int i = 0; i < 10; i++){
+            if(this.experiencePoints >= (this.level * 10)){
+                // Increase Stats
+                this.level++;
+                this.meleeDmg *= 1.25;
+                this.maxHealth *= 1.25;
+                this.healthPoints = this.maxHealth;
+                this.gold += this.level * 100;
+                System.out.println("Congratulations! You have leveled up! You are now level " + this.level + "!\nDamage and Health have been increased.\n100 gold has been added to your inventory.\n ");
+            }
         }
     }
     public Integer getGold(){
@@ -229,16 +235,18 @@ public class Heroes implements Serializable{
     public void addToHeroInventory(Items i){
         this.inventory.add(i);
     }
-    public void getHeroInventory(){
-        System.out.println("Inventory: ");
+    public String getHeroInventory(){
+        String output = "Inventory: ";
         for(int i = 0; i < this.inventory.size(); i++){
             if(i == this.inventory.size() - 1){
-                System.out.print(this.inventory.get(i).getItemName());
+                output = output + this.inventory.get(i).getItemName();
             }
             else{
-                System.out.print(this.inventory.get(i).getItemName() + ", ");
+                output = output + this.inventory.get(i).getItemName() + ", ";
             }
         }
+
+        return output;
     }
     public void loot(){
         //do something

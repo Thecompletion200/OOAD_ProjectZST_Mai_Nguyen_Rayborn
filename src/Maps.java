@@ -8,6 +8,7 @@ public class Maps implements Serializable{
     private Monster currMonster;
     private boolean hasShop = false;
     private boolean bossDefeated = false;
+    private int monstersDefeated = 0;
     private String locationName;
     
 
@@ -31,13 +32,22 @@ public class Maps implements Serializable{
         return this.currMonster;
     }
     
-    public void setBossDefeated()
+    public void setBossDefeated(boolean bd)
     {
-        this.bossDefeated = true;
+        this.bossDefeated = bd;
     }
 
     public Boolean getBossDefeated(){
         return bossDefeated;
+    }
+    public void setMonstersDefeated(int mD){
+        this.monstersDefeated = mD;
+    }
+    public int getMonstersDefeated(){
+        return this.monstersDefeated;
+    }
+    public void increaseMonstersDefeated(){
+        this.monstersDefeated++;
     }
 
     public void fight(FightStrategy fightMethod){
@@ -49,7 +59,7 @@ public class Maps implements Serializable{
 class Elden extends Maps {
     
     public Elden(){
-        this.setBossDefeated();
+        this.setBossDefeated(true);
         this.setLocationName("Elden");
     }
 }
@@ -61,7 +71,7 @@ class EldenPawn extends Maps {
         
     }
     public EldenPawn(){
-        this.setBossDefeated();
+        this.setBossDefeated(true);
         this.setLocationName("The Elden Pawn");
     }
 

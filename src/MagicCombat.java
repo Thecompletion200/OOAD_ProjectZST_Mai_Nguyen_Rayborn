@@ -11,11 +11,16 @@ public class MagicCombat implements FightStrategy{
 
     @Override
     public void fight(Heroes hero, Monster monster){
+
+        hero.ran = false;
         Boolean isFrozen = false;
         Boolean isDebuffed = false;
         int frozenTurnCount = 0;
         while((monster.getHealthPoints() > 0)){
-            System.out.println("Make your move...\n1. Attack\n2. Use Magic\n3. Run\n");
+            System.out.printf("%-40s %-10s\n", "\nHero", monster.getMonsterName());
+            System.out.printf("%-40s %-10s\n", "--------------------", "--------------------");
+            System.out.printf("%-40s %-10s\n", hero.getHealthPoints() + "/" + hero.getMaxHealthPoints() +  "HP", monster.getHealthPoints() + " HP");
+            System.out.println("\n\nMake your move...\n1. Attack\n2. Use Magic\n3. Run\n");
             userChoice = sc.nextLine();
             // Attack
             if(userChoice.equals("1")){
@@ -38,6 +43,11 @@ public class MagicCombat implements FightStrategy{
                     else {
                         System.out.println(monster.getMonsterName() + " has attacked you for " + monster.getDamage() + " HP!");
                         hero.damageHero(monster.getDamage());
+                        hero.checkIsDead();
+                        if(hero.getIsDead()){
+                            System.out.println("You have died!");
+                            return;
+                        }
                     }
                 }
                 // If the monster is frozen...
@@ -68,13 +78,13 @@ public class MagicCombat implements FightStrategy{
             // Run
             else if(userChoice.equals("3"))
             {
+                hero.ran = true;
                 return;
             }
-            System.out.println("You have " + hero.getHealthPoints() + " HP");
-            System.out.println("The " + monster.getMonsterName() + " has " + monster.getHealthPoints() + " HP");
         }
-        
+        hero.giveExp(monster.getExp());
         System.out.println("You have slain " + monster.getMonsterName() + "!");
+        hero.getLocation().increaseMonstersDefeated();
         // Check for level up and death
         hero.checkIsDead();
         hero.levelUp();

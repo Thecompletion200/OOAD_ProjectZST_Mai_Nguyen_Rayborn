@@ -11,8 +11,12 @@ public class RangeCombat implements FightStrategy{
     @Override
     public void fight(Heroes hero, Monster monster){
 
+        hero.ran = false;
         while((monster.getHealthPoints() > 0)){
-            System.out.println("Make your move...\n1. Attack\n2. Run");
+            System.out.printf("%-40s %-10s\n", "\nHero", monster.getMonsterName());
+            System.out.printf("%-40s %-10s\n", "--------------------", "--------------------");
+            System.out.printf("%-40s %-10s\n", hero.getHealthPoints() + "/" + hero.getMaxHealthPoints() +  "HP", monster.getHealthPoints() + " HP");
+            System.out.println("\n\nMake your move...\n1. Attack\n2. Run");
             userChoice = sc.nextLine();
             if(userChoice.equals("1")){
 
@@ -33,18 +37,24 @@ public class RangeCombat implements FightStrategy{
                     else{
                         hero.damageHero(monster.getDamage());
                         System.out.println(monster.getMonsterName() + " has attacked you for " + monster.getDamage() + " HP!");
+                        hero.checkIsDead();
+                        if(hero.getIsDead()){
+                            System.out.println("You have died!");
+                            return;
+                        }
                     }
                 }
                 
             }
             else if(userChoice.equals("2"))
             {
+                hero.ran = true;
                 return;
             }
-            System.out.println("You have " + hero.getHealthPoints() + " HP");
-            System.out.println("The " + monster.getMonsterName() + " has " + monster.getHealthPoints() + " HP");
         }
+        hero.giveExp(monster.getExp());
         System.out.println("You have slain " + monster.getMonsterName() + "!");
+        hero.getLocation().increaseMonstersDefeated();
         // Check for level up and death
         hero.checkIsDead();
         hero.levelUp();
