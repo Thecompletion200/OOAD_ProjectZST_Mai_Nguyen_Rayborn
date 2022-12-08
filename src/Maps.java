@@ -89,7 +89,7 @@ class Fiji extends Maps {
 class RedSea extends Maps {
 
     public RedSea(){
-        this.setLocationName("Rea Sea");
+        this.setLocationName("Red Sea");
     }
 }
 

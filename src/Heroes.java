@@ -2,6 +2,7 @@ package src;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.swing.plaf.metal.MetalLabelUI;
 
@@ -85,22 +86,39 @@ public class Heroes implements Serializable{
             }
         }
     }
-    public void addMap(ArrayList<Maps> allMaps){
+    public void addMap(Maps map){
         // Map Boss defeated
-        ArrayList<Maps> tempAvailMaps = new ArrayList<Maps>();
-        // Add Elden
-        tempAvailMaps.add(allMaps.get(0));
-        // Add other maps
-        for(int i = 0; i < allMaps.size() - 1; i++){
-            System.out.println(allMaps.get(i+1).getLocationName() + allMaps.get(i+1).getBossDefeated());
-            if(allMaps.get(i).getBossDefeated())
-            {   
-                tempAvailMaps.add(allMaps.get(i+1));
-                System.out.println(allMaps.get(i+1) + " has opened!");
+        if(map.getBossDefeated()){
+            switch(map.getLocationName()){
+                case "Elden":
+                    Fiji fiji = new Fiji();
+                    this.availMaps.add(fiji);
+                    System.out.println("Congratulations! You've unlocked a new map: Fiji!");
+                    break;
+                case "Fiji":
+                    RedSea redSea = new RedSea();
+                    this.availMaps.add(redSea);
+                    System.out.println("Congratulations! You've unlocked a new map: The Red Sea!");
+                    break;
+                case "Red Sea":
+                    FireLinkShrine fireLinkShrine = new FireLinkShrine();
+                    this.availMaps.add(fireLinkShrine);
+                    System.out.println("Congratulations! You've unlocked a new map: The Fire Link Shrine!");
+                    break;
+                case "The Fire Link Shrine":
+                    Indicapower indicapower = new Indicapower();
+                    this.availMaps.add(indicapower);
+                    System.out.println("Congratulations! You've unlocked a new map: Indicapower!");
+                    break;
+                case "Indicapower":
+                    Sativatoff sativatoff = new Sativatoff();
+                    this.availMaps.add(sativatoff);
+                    System.out.println("Congratulations! You've unlocked the final map: Sativatoff!");
+                    break;
+                default:
+                    break;
             }
         }
-        this.availMaps = tempAvailMaps;
-        System.out.println("Congratulations! You've unlocked a new map!");
     }
     // Health
     public float getMaxHealthPoints(){

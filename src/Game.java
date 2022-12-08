@@ -30,20 +30,20 @@ public class Game {
         // Maps
         Maps elden = new Elden();
         Maps fiji = new Fiji();
-        Maps redsea = new RedSea();
-        Maps firelinkshrine = new FireLinkShrine();
-        Maps indicapower = new Indicapower();
-        Maps sativatoff = new Sativatoff();
-        Shop eldenShop = new Shop();
+        // Maps redsea = new RedSea();
+        // Maps firelinkshrine = new FireLinkShrine();
+        // Maps indicapower = new Indicapower();
+        // Maps sativatoff = new Sativatoff();
+        // Shop eldenShop = new Shop();
 
         // // Add maps to all maps list
         ArrayList<Maps> allMaps = new ArrayList<Maps>();
         allMaps.add(elden);
         allMaps.add(fiji);
-        allMaps.add(redsea);
-        allMaps.add(firelinkshrine);
-        allMaps.add(indicapower);
-        allMaps.add(sativatoff);
+        // allMaps.add(redsea);
+        // allMaps.add(firelinkshrine);
+        // allMaps.add(indicapower);
+        // allMaps.add(sativatoff);
 
         // Game class variables
         String userChoice;
@@ -123,7 +123,8 @@ public class Game {
             advHero = command.createCharacter(userChoice);
             System.out.println("You have selected your Hero to be a(n) " + advHero.getHeroType());
             // Add First Map
-            advHero.addMap(allMaps);
+            advHero.availMaps.add(elden);
+            advHero.availMaps.add(fiji);
             // Start in Map Elden
             advHero.move("Elden");
             // Load Shop with goodies
