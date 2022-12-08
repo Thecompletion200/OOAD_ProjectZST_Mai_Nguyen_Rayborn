@@ -34,7 +34,7 @@ public class Game {
         // Maps firelinkshrine = new FireLinkShrine();
         // Maps indicapower = new Indicapower();
         // Maps sativatoff = new Sativatoff();
-        // Shop eldenShop = new Shop();
+        Shop eldenShop = new Shop();
 
         // // Add maps to all maps list
         ArrayList<Maps> allMaps = new ArrayList<Maps>();
@@ -244,7 +244,7 @@ public class Game {
                                     advHero.getLocation().setBossDefeated(true);
                                     System.out.println(advHero.getLocationName() + advHero.getLocation().getBossDefeated());
                                     System.out.println(allMaps.get(1).getLocationName() + allMaps.get(1).getBossDefeated());
-                                    advHero.addMap(allMaps);
+                                    advHero.addMap(advHero.getLocation());
                                 }
 
                             }

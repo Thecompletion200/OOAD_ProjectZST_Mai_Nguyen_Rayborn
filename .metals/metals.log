@@ -35,3 +35,8 @@ WARNING: Unmatched cancel notification for request id 962
 2022.12.08 10:09:43 WARN  no build target for: C:\Users\maist\Documents\Coding\CSCI4448\OOAD_ProjectZST_Mai_Nguyen_Rayborn\src\Game.java
 2022.12.08 10:09:49 WARN  no build target for: C:\Users\maist\Documents\Coding\CSCI4448\OOAD_ProjectZST_Mai_Nguyen_Rayborn\src\Game.java
 2022.12.08 10:09:54 WARN  no build target for: C:\Users\maist\Documents\Coding\CSCI4448\OOAD_ProjectZST_Mai_Nguyen_Rayborn\src\Game.java
+Dec 08, 2022 10:10:13 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 1818
+2022.12.08 10:10:19 WARN  no build target for: C:\Users\maist\Documents\Coding\CSCI4448\OOAD_ProjectZST_Mai_Nguyen_Rayborn\src\Game.java
+2022.12.08 10:10:42 WARN  no build target for: C:\Users\maist\Documents\Coding\CSCI4448\OOAD_ProjectZST_Mai_Nguyen_Rayborn\src\Game.java
+2022.12.08 10:11:23 WARN  no build target for: C:\Users\maist\Documents\Coding\CSCI4448\OOAD_ProjectZST_Mai_Nguyen_Rayborn\src\Game.java
