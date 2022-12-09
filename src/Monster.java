@@ -289,7 +289,7 @@ class SwordsmanOog extends Monster {
 
     public SwordsmanOog() {
         this.setMonsterName("Swordsman Oog");
-        this.setDmg(10);
+        this.setDmg(1000);
         this.setExp(5);
         this.setHealthPoint(25);
         this.setMonsterType("Melee");

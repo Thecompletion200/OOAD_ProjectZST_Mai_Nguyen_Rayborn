@@ -379,6 +379,19 @@ public class Command {
                 TimeUnit.SECONDS.sleep(3);
                 System.out.println("\nYou have encountered " + returnMonster.getMonsterName());
                 break;
+            case "Sativatoff":
+                SwordsmanOog swordsmanOog = new SwordsmanOog();
+                returnMonster = swordsmanOog;
+                System.out.println("You hear nothing...");
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("The sound of an unsheathing sword passes your ears...");
+                TimeUnit.SECONDS.sleep(2);
+                System.out.println("It has taken every ounce of your will power to get here");
+                TimeUnit.SECONDS.sleep(2);
+                System.out.println("Swordsman Oog: ADVENTURER! Your journey ends here!");
+                TimeUnit.SECONDS.sleep(2);
+                System.out.println("\nYou have encountered " + returnMonster.getMonsterName());
+                break;
             default:
                 break;
         }

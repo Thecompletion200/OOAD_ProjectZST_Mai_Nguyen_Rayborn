@@ -218,7 +218,7 @@ public class Heroes implements Serializable{
         // In order to level up, we need to reach exp equivalent to level*10
         // We will repeat 10 times in case we level up more than once
         for(int i = 0; i < 10; i++){
-            if(this.experiencePoints >= (this.level * 10)){
+            if(this.experiencePoints >= (this.level * this.level * 3)){
                 // Increase Stats
                 this.level++;
                 this.meleeDmg *= 1.25;
@@ -292,7 +292,7 @@ class Archer extends Heroes{
     }
     @Override
     public void levelUp(){
-        if(this.getExp() == (this.getHeroLevel() * 10)){
+        if(this.getExp() == (this.getHeroLevel() * this.getHeroLevel() * 3)){
             // Increase Stats
             this.setHeroLevel(this.getHeroLevel() + 1);
             this.rangedDmg *= 1.25;
@@ -316,7 +316,7 @@ class Rogue extends Heroes{
     }
     @Override
     public void levelUp(){
-        if(this.getExp() == (this.getHeroLevel() * 10)){
+        if(this.getExp() == (this.getHeroLevel() * this.getHeroLevel() * 3)){
             // Increase Stats
             this.setHeroLevel(this.getHeroLevel() + 1);
             this.meleeDmg *= 1.25;
@@ -338,7 +338,7 @@ class Mage extends Heroes{
     }
     @Override
     public void levelUp(){
-        if(this.getExp() == (this.getHeroLevel() * 10)){
+        if(this.getExp() == (this.getHeroLevel() * this.getHeroLevel() * 3)){
             // Increase Stats
             this.setHeroLevel(this.getHeroLevel() + 1);
             this.magicDmg *= 1.25;
@@ -360,7 +360,7 @@ class Priest extends Heroes{
     }
     @Override
     public void levelUp(){
-        if(this.getExp() == (this.getHeroLevel() * 10)){
+        if(this.getExp() == (this.getHeroLevel() * this.getHeroLevel() * 3)){
             // Increase Stats
             this.setHeroLevel(this.getHeroLevel() + 1);
             this.magicDmg *= 1.25;

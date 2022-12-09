@@ -30,20 +30,20 @@ public class Game {
         // Maps
         Maps elden = new Elden();
         Maps fiji = new Fiji();
-        // Maps redsea = new RedSea();
-        // Maps firelinkshrine = new FireLinkShrine();
-        // Maps indicapower = new Indicapower();
-        // Maps sativatoff = new Sativatoff();
+        Maps redsea = new RedSea();
+        Maps firelinkshrine = new FireLinkShrine();
+        Maps indicapower = new Indicapower();
+        Maps sativatoff = new Sativatoff();
         Shop eldenShop = new Shop();
 
         // // Add maps to all maps list
         ArrayList<Maps> allMaps = new ArrayList<Maps>();
         allMaps.add(elden);
         allMaps.add(fiji);
-        // allMaps.add(redsea);
-        // allMaps.add(firelinkshrine);
-        // allMaps.add(indicapower);
-        // allMaps.add(sativatoff);
+        allMaps.add(redsea);
+        allMaps.add(firelinkshrine);
+        allMaps.add(indicapower);
+        allMaps.add(sativatoff);
 
         // Game class variables
         String userChoice;
@@ -123,8 +123,8 @@ public class Game {
             advHero = command.createCharacter(userChoice);
             System.out.println("You have selected your Hero to be a(n) " + advHero.getHeroType());
             // Add First Map
-            advHero.availMaps.add(elden);
-            advHero.availMaps.add(fiji);
+            advHero.addMap(elden);
+            advHero.addMap(fiji);
             // Start in Map Elden
             advHero.move("Elden");
             // Load Shop with goodies
@@ -164,6 +164,7 @@ public class Game {
                 userChoice = sc.nextLine();
                 switch(userChoice){
                     case "0":
+                        // View inventory
                         command.viewHeroInventory(advHero);
                         break;
                     case "1":
@@ -175,12 +176,14 @@ public class Game {
                         command.healHero(advHero);
                         break;
                     case "3":
+                        // Move
                         System.out.println("Where would you like to move?");
                         advHero.getAvailMoves();
                         userChoice = sc.nextLine();
                         advHero.move(userChoice);
                         break;
                     case "4":
+                        // Save Game
                         saveLoad.saveHero(advHero);
                         saveLoad.saveShop(advHero, eldenShop);
                         break;
@@ -201,6 +204,49 @@ public class Game {
                     default:
                     System.out.println("Sorry that seems to be an invalid option. Please try again");
                         break;
+                }
+
+            }
+            else if(advHero.getLocation().getLocationName().equalsIgnoreCase("Sativatoff")){
+                System.out.println("0) View Hero Inventory\n1) Approach Final Boss\n2) Move");
+                userChoice = sc.nextLine();
+                switch(userChoice){
+                    case "0":
+                        command.viewHeroInventory(advHero);
+                        break;
+                    case "1":
+                        // Fight the Boss
+                        // Player must have defeated at least 15 monsters to fight the boss
+                        if(advHero.getLocation().getMonstersDefeated() >= 100){
+                            System.out.println("Are you sure you want to fight the boss?\n1) Yes\n2) No");
+                            userChoice = sc.nextLine();
+                            // Fight the Boss
+                            if(userChoice.equals("1")){
+                                currMonster = command.spawnBoss(advHero.getLocation());
+                                command.fight(advHero, currMonster);
+                                // If the hero dies, this text wont pop up. We wont have to deal with that check...
+                                // We need to check for, if the hero ran
+                                if(!advHero.ran){
+                                    advHero.getLocation().setBossDefeated(true);
+                                    advHero.addMap(advHero.getLocation());
+                                }
+
+                            }
+                            else{
+                                System.out.println("Returning to map...");
+                            }
+                        }
+                        else{
+                            System.out.println("Sorry you have to defeat 100 monsters here before you approach the final boss! You have defeated " + advHero.getLocation().getMonstersDefeated());
+                        }
+                        break;
+                    case "2":
+                        System.out.println("Where would you like to move?");
+                        advHero.getAvailMoves();
+                        userChoice = sc.nextLine();
+                        advHero.move(userChoice);
+                        break;
+
                 }
 
             }
@@ -231,7 +277,7 @@ public class Game {
                     case "4":
                         // Fight the Boss
                         // Player must have defeated at least 15 monsters to fight the boss
-                        if(advHero.getLocation().getMonstersDefeated() > 10){
+                        if(advHero.getLocation().getMonstersDefeated() >= 10){
                             System.out.println("Are you sure you want to fight the boss?\n1) Yes\n2) No");
                             userChoice = sc.nextLine();
                             // Fight the Boss
@@ -242,8 +288,6 @@ public class Game {
                                 // We need to check for, if the hero ran
                                 if(!advHero.ran){
                                     advHero.getLocation().setBossDefeated(true);
-                                    System.out.println(advHero.getLocationName() + advHero.getLocation().getBossDefeated());
-                                    System.out.println(allMaps.get(1).getLocationName() + allMaps.get(1).getBossDefeated());
                                     advHero.addMap(advHero.getLocation());
                                 }
 
