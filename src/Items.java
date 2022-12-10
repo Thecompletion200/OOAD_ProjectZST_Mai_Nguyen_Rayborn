@@ -81,7 +81,7 @@ class WoodenSword extends Items{
 
     public WoodenSword(){
         this.setDamage(10);
-        this.setItemCost(15);
+        this.setItemCost(25);
         this.setWeaponType("Melee");
         this.setItemName("Wooden Sword");
     }
@@ -91,7 +91,8 @@ class WoodenSword extends Items{
 class SteelSword extends Items{
 
     public SteelSword(){
-        this.setDamage(20);
+        this.setDamage(25);
+        this.setItemCost(100);
         this.setWeaponType("Melee");
         this.setItemName("Steel Sword");
     }
@@ -100,7 +101,8 @@ class SteelSword extends Items{
 class TitaniumSword extends Items{
     
     public TitaniumSword(){
-        this.setDamage(30);
+        this.setDamage(75);
+        this.setItemCost(200);
         this.setWeaponType("Melee");
         this.setItemName("Titanium Sword");
     }
@@ -109,7 +111,8 @@ class TitaniumSword extends Items{
 class TungstenSword extends Items{
 
     public TungstenSword(){
-        this.setDamage(45);
+        this.setDamage(150);
+        this.setItemCost(450);
         this.setWeaponType("Melee");
         this.setItemName("Tungsten Sword");
     }
@@ -129,6 +132,7 @@ class Knives extends Items{
 
     public Knives(){
         this.setDamage(10);
+        this.setItemCost(25);
         this.setWeaponType("Melee");
         this.setItemName("Knives");
     }
@@ -138,6 +142,7 @@ class Kyokestu extends Items{
 
     public Kyokestu(){
         this.setDamage(20);
+        this.setItemCost(100);
         this.setWeaponType("Melee");
         this.setItemName("Kyokestu");
     }
@@ -146,7 +151,8 @@ class Kyokestu extends Items{
 class DualKatanas extends Items{
 
     public DualKatanas(){
-        this.setDamage(30);
+        this.setDamage(77);
+        this.setItemCost(200);
         this.setWeaponType("Melee");
         this.setItemName("Dual Katanas");
     }
@@ -155,7 +161,8 @@ class DualKatanas extends Items{
 class DragonsBlade extends Items{
 
     public DragonsBlade(){
-        this.setDamage(45);
+        this.setDamage(150);
+        this.setItemCost(500);
         this.setWeaponType("Melee");
         this.setItemName("Dragons Blade");
     }
@@ -166,6 +173,7 @@ class WoodenBow extends Items{
 
     public WoodenBow(){
         this.setDamage(10);
+        this.setItemCost(25);
         this.setWeaponType("Range");
         this.setItemName("Wooden Bow");
     }
@@ -174,7 +182,8 @@ class WoodenBow extends Items{
 class LongBow extends Items {
 
     public LongBow(){
-        this.setDamage(20);
+        this.setDamage(25);
+        this.setItemCost(100);
         this.setWeaponType("Range");
         this.setItemName("Long Bow");
     }
@@ -183,7 +192,8 @@ class LongBow extends Items {
 class JaguarStrike extends Items {
     
     public JaguarStrike(){
-        this.setDamage(30);
+        this.setDamage(72);
+        this.setItemCost(200);
         this.setWeaponType("Range");
         this.setItemName("The Jaguars Strike");
     }
@@ -192,7 +202,8 @@ class JaguarStrike extends Items {
 class Yumi extends Items {
 
     public Yumi(){
-        this.setDamage(45);
+        this.setDamage(180);
+        this.setItemCost(600);
         this.setWeaponType("Range");
         this.setItemName("Yumi");
     }
@@ -203,6 +214,7 @@ class WoodenStaff extends Items {
 
     public WoodenStaff(){
         this.setDamage(10);
+        this.setItemCost(25);
         this.setWeaponType("Magic");
         this.setItemName("Wooden Staff");
     }
@@ -212,6 +224,7 @@ class SteelScepter extends Items {
 
     public SteelScepter(){
         this.setDamage(20);
+        this.setItemCost(100);
         this.setWeaponType("Magic");
         this.setItemName("Steel Scepter");
     }
@@ -220,7 +233,8 @@ class SteelScepter extends Items {
 class GoldenScepter extends Items {
 
     public GoldenScepter(){
-        this.setDamage(30);
+        this.setDamage(80);
+        this.setItemCost(220);
         this.setWeaponType("Magic");
         this.setItemName("Golden Scepter");
     }
@@ -229,7 +243,8 @@ class GoldenScepter extends Items {
 class BookofOmniscience extends Items {
 
     public BookofOmniscience(){
-        this.setDamage(45);
+        this.setDamage(140);
+        this.setItemCost(460);
         this.setWeaponType("Magic");
         this.setItemName("Book of Omniscience");
     }
@@ -239,6 +254,7 @@ class BookofOmniscience extends Items {
 class LeatherArmor extends Items {
     public LeatherArmor(){
         this.setArmorRating(10);
+        this.setItemCost(35);
         this.setItemName("Leather Armor");
     }
 }
@@ -246,6 +262,7 @@ class LeatherArmor extends Items {
 class IronArmor extends Items {
     public IronArmor(){
         this.setArmorRating(15);
+        this.setItemCost(80);
         this.setItemName("Iron Armor");
     }
 }
@@ -253,6 +270,7 @@ class IronArmor extends Items {
 class DragonArmor extends Items {
     public DragonArmor(){
         this.setArmorRating(25);
+        this.setItemCost(120);
         this.setItemName("Dragon Armor");
     }
 }
@@ -260,6 +278,7 @@ class DragonArmor extends Items {
 class ZSTArmor extends Items {
     public ZSTArmor(){
         this.setArmorRating(35);
+        this.setItemCost(250);
         this.setItemName("ZST Armor");
     }
 }
@@ -267,6 +286,7 @@ class ZSTArmor extends Items {
 class RastArmor extends Items {
     public RastArmor(){
         this.setArmorRating(50);
+        this.setItemCost(400);
         this.setItemName("Rast Armor");
     }
 }
@@ -274,6 +294,7 @@ class RastArmor extends Items {
 class BakiArmor extends Items{
     public BakiArmor(){
         this.setArmorRating(100);
+        this.setItemCost(600);
         this.setItemName("Baki Armor");
     }
 }

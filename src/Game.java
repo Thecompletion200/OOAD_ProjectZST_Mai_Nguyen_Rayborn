@@ -216,8 +216,8 @@ public class Game {
                         break;
                     case "1":
                         // Fight the Boss
-                        // Player must have defeated at least 15 monsters to fight the boss
-                        if(advHero.getLocation().getMonstersDefeated() >= 100){
+                        // Player must be level 30
+                        if(advHero.getHeroLevel() >= 0){
                             System.out.println("Are you sure you want to fight the boss?\n1) Yes\n2) No");
                             userChoice = sc.nextLine();
                             // Fight the Boss

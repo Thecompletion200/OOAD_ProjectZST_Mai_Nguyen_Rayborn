@@ -20,7 +20,7 @@ public class Heroes implements Serializable{
     // all of these we don't need to override
     private int experiencePoints = 0;
     private int level = 1;
-    private int gold = 25;
+    private int gold = 15;
     public Items weapon;
     public Items armor;
     public int meleeDmg = 10;
@@ -91,7 +91,9 @@ public class Heroes implements Serializable{
         if(map.getBossDefeated()){
             switch(map.getLocationName()){
                 case "Elden":
+                    Elden elden = new Elden();
                     Fiji fiji = new Fiji();
+                    this.availMaps.add(elden);
                     this.availMaps.add(fiji);
                     System.out.println("Congratulations! You've unlocked a new map: Fiji!");
                     break;
@@ -152,9 +154,9 @@ public class Heroes implements Serializable{
         this.resistance = this.armor.getArmorRating()/100;
         return this.resistance;
     }
-    public void healHero(){
-        this.healthPoints = this.maxHealth;
-        System.out.println("You have been restored to full health!");
+    public void healHero(float h){
+        this.healthPoints = h;
+        System.out.println("You have been healed!");
     }
     public void damageHero(float monsterDamage){
         float totalDmg = monsterDamage * (1-this.resistance);
@@ -162,7 +164,12 @@ public class Heroes implements Serializable{
     }
     // Weapons and Damage
     public void equipWeapon(Items w){
-        this.weapon = w;
+        if(this.damageType.equals(w.getWeaponType())){
+            this.weapon = w;
+        }
+        else{
+            System.out.println("You don't know how to use this weapon...");
+        }
     }
     public Items getWeapon(){
         return this.weapon;
@@ -224,7 +231,7 @@ public class Heroes implements Serializable{
                 this.meleeDmg *= 1.25;
                 this.maxHealth *= 1.25;
                 this.healthPoints = this.maxHealth;
-                this.gold += this.level * 100;
+                this.gold += this.level * 50;
                 System.out.println("Congratulations! You have leveled up! You are now level " + this.level + "!\nDamage and Health have been increased.\n100 gold has been added to your inventory.\n ");
             }
         }
@@ -292,14 +299,16 @@ class Archer extends Heroes{
     }
     @Override
     public void levelUp(){
-        if(this.getExp() == (this.getHeroLevel() * this.getHeroLevel() * 3)){
-            // Increase Stats
-            this.setHeroLevel(this.getHeroLevel() + 1);
-            this.rangedDmg *= 1.25;
-            this.setMaxHealth(this.getMaxHealthPoints() * (float)1.25);
-            this.setHealthPoints(this.getMaxHealthPoints());
-            this.setGold(this.getGold() + 100);
-            System.out.println("Congratulations! You have leveled up! You are now level " + this.getHeroLevel() + "!\nDamage and Health have been increased.\n100 gold has been added to your inventory.\n ");
+        for(int i = 0; i < 10; i++){
+            if(this.getExp() >= (this.getHeroLevel() * this.getHeroLevel() * 3)){
+                // Increase Stats
+                this.setHeroLevel(this.getHeroLevel() + 1);
+                this.rangedDmg *= 1.25;
+                this.setMaxHealth(this.getMaxHealthPoints() * (float)1.25);
+                this.setHealthPoints(this.getMaxHealthPoints());
+                this.setGold(this.getGold() + 100);
+                System.out.println("Congratulations! You have leveled up! You are now level " + this.getHeroLevel() + "!\nDamage and Health have been increased.\n100 gold has been added to your inventory.\n ");
+            }
         }
     }
 }
@@ -311,20 +320,22 @@ class Rogue extends Heroes{
         this.setDamageType("Melee");
         this.setMaxHealth(125);
         this.setHealthPoints(125);
-        this.critChance = 5;
+        this.critChance = 15;
         this.critMult = (float)1.5;
     }
     @Override
     public void levelUp(){
-        if(this.getExp() == (this.getHeroLevel() * this.getHeroLevel() * 3)){
-            // Increase Stats
-            this.setHeroLevel(this.getHeroLevel() + 1);
-            this.meleeDmg *= 1.25;
-            this.critChance *= 1.25;
-            this.setMaxHealth(this.getMaxHealthPoints() * (float)1.25);
-            this.setHealthPoints(this.getMaxHealthPoints());
-            this.setGold(this.getGold() + 100);
-            System.out.println("Congratulations! You have leveled up! You are now level " + this.getHeroLevel() + "!\nDamage and Health have been increased.\n100 gold has been added to your inventory.\n ");
+        for(int i = 0; i < 10; i++){
+        if(this.getExp() >= (this.getHeroLevel() * this.getHeroLevel() * 3)){
+                // Increase Stats
+                this.setHeroLevel(this.getHeroLevel() + 1);
+                this.meleeDmg *= 1.25;
+                this.critChance *= 1.25;
+                this.setMaxHealth(this.getMaxHealthPoints() * (float)1.25);
+                this.setHealthPoints(this.getMaxHealthPoints());
+                this.setGold(this.getGold() + 100);
+                System.out.println("Congratulations! You have leveled up! You are now level " + this.getHeroLevel() + "!\nDamage and Health have been increased.\n100 gold has been added to your inventory.\n ");
+            }
         }
     }
 }
@@ -338,14 +349,16 @@ class Mage extends Heroes{
     }
     @Override
     public void levelUp(){
-        if(this.getExp() == (this.getHeroLevel() * this.getHeroLevel() * 3)){
-            // Increase Stats
-            this.setHeroLevel(this.getHeroLevel() + 1);
-            this.magicDmg *= 1.25;
-            this.setMaxHealth(this.getMaxHealthPoints() * (float)1.25);
-            this.setHealthPoints(this.getMaxHealthPoints());
-            this.setGold(this.getGold() + 100);
-            System.out.println("Congratulations! You have leveled up! You are now level " + this.getHeroLevel() + "!\nDamage and Health have been increased.\n100 gold has been added to your inventory.\n ");
+        for(int i = 0; i < 10; i++){
+            if(this.getExp() >= (this.getHeroLevel() * this.getHeroLevel() * 3)){
+                // Increase Stats
+                this.setHeroLevel(this.getHeroLevel() + 1);
+                this.magicDmg *= 1.25;
+                this.setMaxHealth(this.getMaxHealthPoints() * (float)1.25);
+                this.setHealthPoints(this.getMaxHealthPoints());
+                this.setGold(this.getGold() + 100);
+                System.out.println("Congratulations! You have leveled up! You are now level " + this.getHeroLevel() + "!\nDamage and Health have been increased.\n100 gold has been added to your inventory.\n ");
+            }
         }
     }
 }
@@ -360,14 +373,16 @@ class Priest extends Heroes{
     }
     @Override
     public void levelUp(){
-        if(this.getExp() == (this.getHeroLevel() * this.getHeroLevel() * 3)){
-            // Increase Stats
-            this.setHeroLevel(this.getHeroLevel() + 1);
-            this.magicDmg *= 1.25;
-            this.setMaxHealth(this.getMaxHealthPoints() * (float)1.25);
-            this.setHealthPoints(this.getMaxHealthPoints());
-            this.setGold(this.getGold() + 100);
-            System.out.println("Congratulations! You have leveled up! You are now level " + this.getHeroLevel() + "!\nDamage and Health have been increased.\n100 gold has been added to your inventory.\n ");
+        for(int i = 0; i < 10; i++){
+            if(this.getExp() >= (this.getHeroLevel() * this.getHeroLevel() * 3)){
+                // Increase Stats
+                this.setHeroLevel(this.getHeroLevel() + 1);
+                this.magicDmg *= 1.25;
+                this.setMaxHealth(this.getMaxHealthPoints() * (float)1.25);
+                this.setHealthPoints(this.getMaxHealthPoints());
+                this.setGold(this.getGold() + 100);
+                System.out.println("Congratulations! You have leveled up! You are now level " + this.getHeroLevel() + "!\nDamage and Health have been increased.\n100 gold has been added to your inventory.\n ");
+            }
         }
     }
 }

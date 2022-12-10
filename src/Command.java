@@ -103,7 +103,7 @@ public class Command {
         System.out.println("Crit Multiplier: " + advHero.critMult);
         System.out.println("Loaction: " + advHero.getLocationName());
         System.out.println("Level: " + advHero.getHeroLevel());
-        System.out.println("Exp: " + advHero.getExp() + "/" + advHero.getHeroLevel()*10);
+        System.out.println("Exp: " + advHero.getExp() + "/" + advHero.getHeroLevel() * advHero.getHeroLevel() * 3);
 
     }
     
@@ -114,7 +114,8 @@ public class Command {
         if(userChoice.equals("1")){
             boolean p = advHero.purchase(advHero.getHeroLevel()*15);
             if(p){
-                advHero.healHero();
+                System.out.print("Restored to full health");
+                advHero.healHero(advHero.getMaxHealthPoints());
             }
         }
         else{
@@ -205,6 +206,13 @@ public class Command {
                             shop.removeFromInventory(bought);
                             // Add to hero inventory
                             advHero.addToHeroInventory(bought);
+                            // Equip Weapon or armor
+                            if(bought.getDamage() > 0){
+                                advHero.equipWeapon(bought);
+                            }
+                            else{
+                                advHero.equipArmor(bought);
+                            }
                             System.out.println("Item Bought Successfully!");
                         }
                         //advHeroes.purchase(null)
@@ -257,7 +265,7 @@ public class Command {
                         break;
                 }
                 break;
-            case "Rea Sea":
+            case "Red Sea":
                 // Create new creatures
                 switch(randIndex){
                     // Spawn random creature
@@ -350,7 +358,7 @@ public class Command {
                 TimeUnit.SECONDS.sleep(3);
                 System.out.println("\nYou have encountered " + returnMonster.getMonsterName());
                 break;
-            case "Rea Sea":
+            case "Red Sea":
                 // Create new creatures
                 Dracula d = new Dracula();
                 returnMonster = d;
@@ -400,8 +408,10 @@ public class Command {
 
     public void fight(Heroes advHero, Monster currMonster){
         FightStrategy melee = new MeleeCombat();
+        FightStrategy rogue = new RogueCombat();
         FightStrategy range = new RangeCombat();
         FightStrategy magic = new MagicCombat();
+        FightStrategy priest = new PriestCombat();
         Command c = new Command();
 
         switch(advHero.getHeroType()){
@@ -411,7 +421,7 @@ public class Command {
                 break;
             case "Rogue":
                 // Rogue Combat
-                // game.fightCombat(rogue, advHero, currMonster);
+                c.fightCombat(rogue, advHero, currMonster);
                 break;
             case "Archer":
                 // Range Combat
@@ -423,7 +433,7 @@ public class Command {
                 break;
             case "Priest":
                 // Priest Combat
-                // game.fightCombat(priest, advHero, currMonster);
+                c.fightCombat(priest, advHero, currMonster);
                 break;
             default:
                 System.out.println("Oops, there seems to be an error in the fight method!");
