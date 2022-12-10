@@ -28,6 +28,11 @@ public class RogueCombat implements FightStrategy{
                     // Enemy Attack
                     System.out.println(monster.getMonsterName() + " has attacked you for " + monster.getDamage() + " HP!");
                     hero.damageHero(monster.getDamage());
+                    hero.checkIsDead();
+                        if(hero.getIsDead()){
+                            System.out.println("You have died!");
+                            return;
+                        }
                 }
                 else{
                     monster.damageMonster(hero.attack());

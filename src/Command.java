@@ -96,8 +96,8 @@ public class Command {
         System.out.printf("%-40s %-10s\n", "Hero: " + advHero.getHeroName(), "Inventory:");
         System.out.printf("%-40s %-10s\n", "------------------------------", "------------------------------");
         System.out.printf("%-40s %-10s\n", "Health: " + advHero.getHealthPoints() + "/" +advHero.getMaxHealthPoints(), "Gold: " + advHero.getGold() );
-        System.out.printf("%-40s %-10s\n", "Melee Damage: " + advHero.meleeDmg, "Equiped Weapon: " + advHero.getWeapon().getItemName() + " - " + advHero.getWeapon().getDamage() + " dmg");
-        System.out.printf("%-40s %-10s\n", "Range Damage: " + advHero.rangedDmg, "Equiped Armor: " + advHero.getArmor().getItemName() + " - " + advHero.getArmor().getArmorRating() + " armor rating");
+        System.out.printf("%-40s %-10s\n", "Melee Damage: " + advHero.meleeDmg, "Equipped Weapon: " + advHero.getWeapon().getItemName() + " - " + advHero.getWeapon().getDamage() + " dmg");
+        System.out.printf("%-40s %-10s\n", "Range Damage: " + advHero.rangedDmg, "Equipped Armor: " + advHero.getArmor().getItemName() + " - " + advHero.getArmor().getArmorRating() + " armor rating");
         System.out.printf("%-40s %-10s\n", "Magic Damage: " + advHero.magicDmg, advHero.getHeroInventory());
         System.out.println("Crit Chance: " + advHero.critChance);
         System.out.println("Crit Multiplier: " + advHero.critMult);

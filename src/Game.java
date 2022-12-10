@@ -260,6 +260,7 @@ public class Game {
                         break;
                     case "1":
                         // Search
+                        advHero.loot(advHero.getLocation());
                         break;
                     case "2":
                         // Fight Creatures

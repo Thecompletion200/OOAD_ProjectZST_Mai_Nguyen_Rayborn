@@ -65,15 +65,25 @@ public class MagicCombat implements FightStrategy{
                     case "1":
                     System.out.println("You've inflicted burn to " + monster.getMonsterName() + ". " + monster.getMonsterName() + " has been burned for " + monster.getHealthPoints()*.16 + " HP!");
                         monster.damageMonster(monster.getHealthPoints()*(float).16);
+                        break;
                     case "2":
                         isFrozen = true;
                         System.out.println("You've frozen " + monster.getMonsterName());
+                        break;
                     case "3":
                         isDebuffed = true;
                         System.out.println("You've debuffed " + monster.getMonsterName() + ". They now do less damage");
+                        break;
                     default:
                 }
-            }
+                System.out.println(monster.getMonsterName() + " has attacked you for " + monster.getDamage() + " HP!");
+                hero.damageHero(monster.getDamage());
+                hero.checkIsDead();
+                if(hero.getIsDead()){
+                    System.out.println("You have died!");
+                    return;
+                }
+    }
 
             // Run
             else if(userChoice.equals("3"))

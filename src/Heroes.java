@@ -3,6 +3,7 @@ package src;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 import javax.swing.plaf.metal.MetalLabelUI;
 
@@ -164,7 +165,10 @@ public class Heroes implements Serializable{
     }
     // Weapons and Damage
     public void equipWeapon(Items w){
-        if(this.damageType.equals(w.getWeaponType())){
+        if(w.getItemName().equalsIgnoreCase("fist")){
+            this.weapon = w;
+        }
+        else if(this.damageType.equals(w.getWeaponType())){
             this.weapon = w;
         }
         else{
@@ -273,14 +277,27 @@ public class Heroes implements Serializable{
 
         return output;
     }
-    public void loot(){
-        //do something
-    }
-    public void mine(){
-        //do something
-    }
-    public void craft(){
-        //do something
+    public void loot(Maps m){
+        Random random = new Random();
+        int lootChance = random.nextInt(100);
+        if(lootChance < 33){
+            if(m.getLocationName().equalsIgnoreCase("Fiji")){
+                int loot = random.nextInt(3);
+                this.pickUpGold(loot);
+            }
+            else if(m.getLocationName().equalsIgnoreCase("Red Sea")){
+                int loot = random.nextInt(8);
+                this.pickUpGold(loot);
+            }
+            else if(m.getLocationName().equalsIgnoreCase("The Fire Link Shrine")){
+                int loot = random.nextInt(13);
+                this.pickUpGold(loot);
+            }
+            else if(m.getLocationName().equalsIgnoreCase("Indicapower")){
+                int loot = random.nextInt(20);
+                this.pickUpGold(loot);
+            }
+        }
     }
 }
 

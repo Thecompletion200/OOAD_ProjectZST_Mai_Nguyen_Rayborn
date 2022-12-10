@@ -17,7 +17,7 @@ public class PriestCombat implements FightStrategy{
             System.out.printf("%-40s %-10s\n", "\nHero", monster.getMonsterName());
             System.out.printf("%-40s %-10s\n", "--------------------", "--------------------");
             System.out.printf("%-40s %-10s\n", hero.getHealthPoints() + "/" + hero.getMaxHealthPoints() +  "HP", monster.getHealthPoints() + " HP");
-            System.out.println("\n\nMake your move...\n1. Attack\n2. Use Magic\n3. Run\n");
+            System.out.println("\n\nMake your move...\n1. Attack\n2. Heal\n3. Run\n");
             userChoice = sc.nextLine();
             // Attack
             if(userChoice.equals("1")){
@@ -39,8 +39,13 @@ public class PriestCombat implements FightStrategy{
             // Use heales
             else if(userChoice.equals("2"))
             {
-                hero.healHero(hero.getMaxHealthPoints()*(float)0.75);
-                System.out.println("You have been restored to 75% HP!");
+                if(hero.getHealthPoints() < hero.getMaxHealthPoints()*(float)0.75){
+                    hero.healHero(hero.getMaxHealthPoints()*(float)0.75);
+                    System.out.println("You have been restored to 75% HP!");
+                }
+                else{
+                    System.out.println("You don't need to heal!");
+                }
             }
             // Run
             else if(userChoice.equals("3"))
